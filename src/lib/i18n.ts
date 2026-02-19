@@ -15,7 +15,6 @@ export interface Translations {
   presetPlaceholder: string;
   customPlaceholder: string;
   btnAdd: string;
-  btnGenerate: string;
   btnDownload: string;
   dragTitle: string;
   removeTitle: string;
@@ -33,6 +32,9 @@ export interface Translations {
   advLineH: string;
   advFixedGap: string;
   advSidebarW: string;
+  advFontSizeStart: string;
+  advFontSizeMid: string;
+  advFontSizeEnd: string;
   advReset: string;
   navTools: string;
   heroBadge: string;
@@ -72,7 +74,6 @@ export const LANGS: Record<Lang, Translations> = {
     presetPlaceholder: "— Wybierz z listy —",
     customPlaceholder: "lub wpisz własną…",
     btnAdd: "Dodaj",
-    btnGenerate: "Generuj podgląd",
     btnDownload: "Pobierz PNG",
     dragTitle: "Przeciągnij",
     removeTitle: "Usuń",
@@ -90,6 +91,9 @@ export const LANGS: Record<Lang, Translations> = {
     advLineH: "Grubość linii",
     advFixedGap: "Odstęp stacji",
     advSidebarW: "Szerokość paska",
+    advFontSizeStart: "Tekst st. początkowej",
+    advFontSizeMid: "Tekst st. pośredniej",
+    advFontSizeEnd: "Tekst st. końcowej",
     advReset: "Przywróć domyślne",
     navTools: "Narzędzia",
     heroBadge: "Narzędzia dla SimRail",
@@ -131,7 +135,6 @@ export const LANGS: Record<Lang, Translations> = {
     presetPlaceholder: "— Choose from list —",
     customPlaceholder: "or type custom…",
     btnAdd: "Add",
-    btnGenerate: "Generate preview",
     btnDownload: "Download PNG",
     dragTitle: "Drag",
     removeTitle: "Remove",
@@ -149,6 +152,9 @@ export const LANGS: Record<Lang, Translations> = {
     advLineH: "Line thickness",
     advFixedGap: "Station gap",
     advSidebarW: "Sidebar width",
+    advFontSizeStart: "Start station font",
+    advFontSizeMid: "Mid station font",
+    advFontSizeEnd: "End station font",
     advReset: "Reset defaults",
     navTools: "Tools",
     heroBadge: "Tools for SimRail",

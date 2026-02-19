@@ -26,9 +26,7 @@ export default function RoutePage() {
           <AdvancedPanel state={state} dispatch={dispatch} />
         </div>
 
-        <div className="mt-auto shrink-0 sticky bottom-0 pt-1 pb-1 bg-background">
-          <ActionBar state={state} />
-        </div>
+        <ActionBar state={state} />
       </div>
 
       <div className="flex-1 min-w-0 flex flex-col gap-2">

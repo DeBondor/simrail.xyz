@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useId } from "react";
 import { useLang } from "@/providers/LangProvider";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -196,6 +196,7 @@ export function StationsPanel({ state, dispatch }: StationsPanelProps) {
   const [customInput, setCustomInput] = useState("");
   const [comboOpen, setComboOpen] = useState(false);
   const xmlInputRef = useRef<HTMLInputElement>(null);
+  const dndId = useId();
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
@@ -356,6 +357,7 @@ export function StationsPanel({ state, dispatch }: StationsPanelProps) {
               />
 
               <DndContext
+                id={dndId}
                 sensors={sensors}
                 collisionDetection={closestCenter}
                 onDragEnd={handleDragEnd}

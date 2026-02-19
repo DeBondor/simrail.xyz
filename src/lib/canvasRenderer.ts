@@ -18,6 +18,9 @@ export interface AdvancedSettings {
   fixedGap: number;
   sidebarW: number;
   endXPct: number;
+  fontSizeStart: number;
+  fontSizeMid: number;
+  fontSizeEnd: number;
 }
 
 export interface DrawParams {
@@ -140,7 +143,8 @@ function drawLabel(
   N: number,
   trackRight: number,
   bold: boolean,
-  adv: AdvancedSettings
+  adv: AdvancedSettings,
+  canvasW: number
 ): void {
   ctx.save();
   const shapeTop = adv.trackY - shapeHalfH(type, N, adv.sqSize, adv.triH);
@@ -152,8 +156,7 @@ function drawLabel(
   ctx.translate(x + startOffsetX + endOffsetX, shapeTop - spacing + endOffsetY);
   ctx.rotate(-Math.PI / 3);
   if (!isEndpoint) ctx.translate(10, 18);
-  const endpointFs = 48;
-  const fs = isEndpoint ? endpointFs : endpointFs / 1.2;
+  const fs = type === "start" ? adv.fontSizeStart : type === "end" ? adv.fontSizeEnd : adv.fontSizeMid;
   const weight = isEndpoint ? "normal " : bold ? "bold " : "italic ";
   ctx.font = weight + fs + 'px "AileronCanvas",sans-serif';
   ctx.textAlign = "left";
@@ -162,9 +165,10 @@ function drawLabel(
   if (type === "end") {
     const originY = shapeTop - spacing + endOffsetY;
     const originX = x + endOffsetX;
-    const canvasWidth = trackRight + RIGHT_MARGIN;
-    const maxByHeight = originY / Math.sin(Math.PI / 3);
-    const maxByRight = (canvasWidth - originX) / Math.cos(Math.PI / 3);
+    const cos60 = Math.cos(Math.PI / 3);
+    const sin60 = Math.sin(Math.PI / 3);
+    const maxByHeight = originY / sin60;
+    const maxByRight = (canvasW - originX) / cos60;
     const maxWidth = Math.max(60, Math.min(maxByHeight, maxByRight) - fs * 0.5);
     const lines = wrapText(ctx, name, maxWidth);
     const lineHeight = fs * 1.3;
@@ -252,7 +256,7 @@ export function drawMap(
   allStations.forEach((st, i) => {
     const x = stationX(i, N, trackRight);
     drawStation(ctx, x, st.type, colors, N, adv);
-    drawLabel(ctx, x, st.name, st.type, N, trackRight, st.bold, adv);
+    drawLabel(ctx, x, st.name, st.type, N, trackRight, st.bold, adv, W);
   });
 }
 

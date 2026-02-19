@@ -133,6 +133,56 @@ export function AdvancedPanel({ state, dispatch }: AdvancedPanelProps) {
             </div>
           </div>
 
+          {/* Font size sliders */}
+          <div className="space-y-2">
+            <Label className="text-[0.68rem] font-bold text-muted-foreground uppercase tracking-wider">
+              {t.advFontSizeStart}{" "}
+              <span className="text-primary text-[0.85em] ml-1">
+                {adv.fontSizeStart}px
+              </span>
+            </Label>
+            <Slider
+              value={[adv.fontSizeStart]}
+              onValueChange={([v]) => setAdv("fontSizeStart", v)}
+              min={10}
+              max={120}
+              step={1}
+              className="py-1.5"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label className="text-[0.68rem] font-bold text-muted-foreground uppercase tracking-wider">
+              {t.advFontSizeMid}{" "}
+              <span className="text-primary text-[0.85em] ml-1">
+                {adv.fontSizeMid}px
+              </span>
+            </Label>
+            <Slider
+              value={[adv.fontSizeMid]}
+              onValueChange={([v]) => setAdv("fontSizeMid", v)}
+              min={10}
+              max={120}
+              step={1}
+              className="py-1.5"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label className="text-[0.68rem] font-bold text-muted-foreground uppercase tracking-wider">
+              {t.advFontSizeEnd}{" "}
+              <span className="text-primary text-[0.85em] ml-1">
+                {adv.fontSizeEnd}px
+              </span>
+            </Label>
+            <Slider
+              value={[adv.fontSizeEnd]}
+              onValueChange={([v]) => setAdv("fontSizeEnd", v)}
+              min={10}
+              max={120}
+              step={1}
+              className="py-1.5"
+            />
+          </div>
+
           {/* Grid 2 - sidebar + reset */}
           <div className="grid grid-cols-2 gap-3.5">
             <div className="space-y-1.5">

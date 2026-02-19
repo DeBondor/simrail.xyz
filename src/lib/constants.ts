@@ -15,5 +15,8 @@ export const DEFAULT_ADVANCED: AdvancedSettings = {
   fixedGap: 36,
   sidebarW: 96,
   endXPct: 100,
+  fontSizeStart: 48,
+  fontSizeMid: 40,
+  fontSizeEnd: 48,
 };
 
