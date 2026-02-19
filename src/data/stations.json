@@ -1,0 +1,13 @@
+{
+  "groups": [
+    {
+      "label": "Test Label",
+      "stations": [
+        "Test Station 1",
+        "Test Station 2",
+        "Test Station 3"
+      ]
+    }
+  ]
+}
+
