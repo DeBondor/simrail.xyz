@@ -5,9 +5,12 @@ import {
   useContext,
   useState,
   useCallback,
+  useEffect,
   type ReactNode,
 } from "react";
 import { LANGS, type Lang, type Translations } from "@/lib/i18n";
+
+const DEFAULT_LANG: Lang = "pl";
 
 interface LangContextValue {
   lang: Lang;
@@ -18,11 +21,14 @@ interface LangContextValue {
 const LangContext = createContext<LangContextValue | null>(null);
 
 export function LangProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>(() => {
-    if (typeof window === "undefined") return "pl";
+  const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
+
+  useEffect(() => {
     const stored = localStorage.getItem("simrailxyz-lang");
-    return stored === "en" || stored === "pl" ? stored : "pl";
-  });
+    if (stored === "en" || stored === "pl") {
+      setLang(stored);
+    }
+  }, []);
 
   const toggleLang = useCallback(() => {
     setLang((prev) => {
