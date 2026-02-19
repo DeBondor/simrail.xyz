@@ -1,6 +1,7 @@
 "use client";
 
 import { useReducer, useEffect } from "react";
+import type { Dispatch } from "react";
 import type { SegmentStyle, AdvancedSettings } from "@/lib/canvasRenderer";
 import { DEFAULT_ADVANCED } from "@/lib/constants";
 
@@ -22,7 +23,7 @@ export interface RouteState {
   customSecondary: string;
 }
 
-type RouteAction =
+export type RouteAction =
   | { type: "SET_CATEGORY"; payload: string }
   | { type: "SET_TRAIN_NUMBER"; payload: string }
   | { type: "SET_START"; payload: string }
@@ -168,3 +169,4 @@ export function useRouteState() {
   return { state, dispatch };
 }
 
+export type RouteDispatch = Dispatch<RouteAction>;

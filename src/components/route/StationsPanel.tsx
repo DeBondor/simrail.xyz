@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState, useCallback } from "react";
 import { useLang } from "@/providers/LangProvider";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -65,14 +65,14 @@ import { CSS } from "@dnd-kit/utilities";
 import { fetchStations } from "@/lib/api";
 import { parseSimRailXML } from "@/lib/xmlImporter";
 import { categoryOptions } from "@/lib/colorSchemes";
-import type { RouteState, IntermediateStation } from "@/hooks/useRouteState";
+import type { RouteState, IntermediateStation, RouteDispatch } from "@/hooks/useRouteState";
 import type { SegmentStyle } from "@/lib/canvasRenderer";
 
 const stationsData = fetchStations();
 
 interface StationsPanelProps {
   state: RouteState;
-  dispatch: React.Dispatch<any>;
+  dispatch: RouteDispatch;
 }
 
 function SortableStationItem({
@@ -84,7 +84,7 @@ function SortableStationItem({
 }: {
   station: IntermediateStation;
   index: number;
-  dispatch: React.Dispatch<any>;
+  dispatch: RouteDispatch;
   dragTitle: string;
   removeTitle: string;
 }) {
@@ -158,7 +158,7 @@ function SegmentRow({
 }: {
   index: number;
   style: SegmentStyle;
-  dispatch: React.Dispatch<any>;
+  dispatch: RouteDispatch;
   segStyleNames: [string, string, string];
   segmentLabel: (i: number) => string;
 }) {
@@ -195,12 +195,7 @@ export function StationsPanel({ state, dispatch }: StationsPanelProps) {
   const { t } = useLang();
   const [customInput, setCustomInput] = useState("");
   const [comboOpen, setComboOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const xmlInputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
@@ -236,8 +231,13 @@ export function StationsPanel({ state, dispatch }: StationsPanelProps) {
       e.target.value = "";
       const reader = new FileReader();
       reader.onload = (ev) => {
+        const text = ev.target?.result;
+        if (!text || String(text).trim() === "") {
+          alert("Selected file is empty or could not be read.");
+          return;
+        }
         try {
-          const result = parseSimRailXML(ev.target?.result as string);
+          const result = parseSimRailXML(String(text));
           const catExists = categoryOptions.some(
             (o) => o.value === result.trainName
           );
@@ -252,8 +252,10 @@ export function StationsPanel({ state, dispatch }: StationsPanelProps) {
               customCatName: catExists ? undefined : result.trainName,
             },
           });
-        } catch (ex: any) {
-          alert(ex.message);
+        } catch (ex) {
+          const message = ex instanceof Error ? ex.message : "Unknown error";
+          console.error("Failed to import SimRail XML:", message);
+          alert(message);
         }
       };
       reader.readAsText(file, "UTF-8");
@@ -353,58 +355,35 @@ export function StationsPanel({ state, dispatch }: StationsPanelProps) {
                 segmentLabel={t.segmentLabel}
               />
 
-              {mounted ? (
-                <DndContext
-                  sensors={sensors}
-                  collisionDetection={closestCenter}
-                  onDragEnd={handleDragEnd}
+              <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+              >
+                <SortableContext
+                  items={state.stations.map((_, i) => `station-${i}`)}
+                  strategy={verticalListSortingStrategy}
                 >
-                  <SortableContext
-                    items={state.stations.map((_, i) => `station-${i}`)}
-                    strategy={verticalListSortingStrategy}
-                  >
-                    {state.stations.map((station, i) => (
-                      <div key={`item-${i}`} className="space-y-1.5">
-                        <SortableStationItem
-                          station={station}
-                          index={i}
-                          dispatch={dispatch}
-                          dragTitle={t.dragTitle}
-                          removeTitle={t.removeTitle}
-                        />
-                        <SegmentRow
-                          index={i + 1}
-                          style={state.segmentStyles[i + 1] || "solid"}
-                          dispatch={dispatch}
-                          segStyleNames={t.segStyleNames}
-                          segmentLabel={t.segmentLabel}
-                        />
-                      </div>
-                    ))}
-                  </SortableContext>
-                </DndContext>
-              ) : (
-                state.stations.map((station, i) => (
-                  <div key={`item-${i}`} className="space-y-1.5">
-                    <div className="flex items-center gap-2 bg-secondary border border-border rounded-md px-2.5 py-2">
-                      <span className="text-muted-foreground shrink-0 p-0.5">
-                        <GripVertical className="h-3.5 w-3.5" />
-                      </span>
-                      <span className="text-[0.65rem] font-bold text-muted-foreground w-4.5 text-center shrink-0">
-                        {i + 1}
-                      </span>
-                      <span className="flex-1 text-sm">{station.name}</span>
+                  {state.stations.map((station, i) => (
+                    <div key={`item-${i}`} className="space-y-1.5">
+                      <SortableStationItem
+                        station={station}
+                        index={i}
+                        dispatch={dispatch}
+                        dragTitle={t.dragTitle}
+                        removeTitle={t.removeTitle}
+                      />
+                      <SegmentRow
+                        index={i + 1}
+                        style={state.segmentStyles[i + 1] || "solid"}
+                        dispatch={dispatch}
+                        segStyleNames={t.segStyleNames}
+                        segmentLabel={t.segmentLabel}
+                      />
                     </div>
-                    <SegmentRow
-                      index={i + 1}
-                      style={state.segmentStyles[i + 1] || "solid"}
-                      dispatch={dispatch}
-                      segStyleNames={t.segStyleNames}
-                      segmentLabel={t.segmentLabel}
-                    />
-                  </div>
-                ))
-              )}
+                  ))}
+                </SortableContext>
+              </DndContext>
             </div>
 
             <div className="flex gap-2 mt-2">

@@ -4,7 +4,6 @@ import {
   createContext,
   useContext,
   useState,
-  useEffect,
   useCallback,
   type ReactNode,
 } from "react";
@@ -19,14 +18,11 @@ interface LangContextValue {
 const LangContext = createContext<LangContextValue | null>(null);
 
 export function LangProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>("pl");
-
-  useEffect(() => {
+  const [lang, setLang] = useState<Lang>(() => {
+    if (typeof window === "undefined") return "pl";
     const stored = localStorage.getItem("simrailxyz-lang");
-    if (stored === "en" || stored === "pl") {
-      setLang(stored);
-    }
-  }, []);
+    return stored === "en" || stored === "pl" ? stored : "pl";
+  });
 
   const toggleLang = useCallback(() => {
     setLang((prev) => {
@@ -48,4 +44,3 @@ export function useLang(): LangContextValue {
   if (!ctx) throw new Error("useLang must be used within LangProvider");
   return ctx;
 }
-

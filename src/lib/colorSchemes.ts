@@ -20,6 +20,6 @@ export const categoryOptions = [
   { value: "TLK", label: "TLK — Twoje Linie Kolejowe" },
   { value: "R", label: "R — Regio" },
   { value: "TME", label: "TME — Other" },
-  { value: "CUSTOM", label: "✦ Custom…" },
+  { value: "CUSTOM", label: "✦ Custom" },
 ] as const;
 

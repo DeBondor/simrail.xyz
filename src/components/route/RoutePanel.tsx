@@ -17,11 +17,11 @@ import {
 } from "@/components/ui/collapsible";
 import { ChevronDown } from "lucide-react";
 import { categoryOptions } from "@/lib/colorSchemes";
-import type { RouteState } from "@/hooks/useRouteState";
+import type { RouteState, RouteDispatch } from "@/hooks/useRouteState";
 
 interface RoutePanelProps {
   state: RouteState;
-  dispatch: React.Dispatch<any>;
+  dispatch: RouteDispatch;
 }
 
 export function RoutePanel({ state, dispatch }: RoutePanelProps) {
@@ -137,5 +137,3 @@ export function RoutePanel({ state, dispatch }: RoutePanelProps) {
     </Collapsible>
   );
 }
-
-

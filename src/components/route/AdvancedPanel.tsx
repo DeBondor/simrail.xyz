@@ -11,11 +11,11 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { ChevronDown, RotateCcw } from "lucide-react";
-import type { RouteState } from "@/hooks/useRouteState";
+import type { RouteState, RouteDispatch } from "@/hooks/useRouteState";
 
 interface AdvancedPanelProps {
   state: RouteState;
-  dispatch: React.Dispatch<any>;
+  dispatch: RouteDispatch;
 }
 
 export function AdvancedPanel({ state, dispatch }: AdvancedPanelProps) {

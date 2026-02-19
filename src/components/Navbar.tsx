@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { Sun, Moon, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,15 +9,20 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useLang } from "@/providers/LangProvider";
+import { useHydrated } from "@/hooks/useHydrated";
+
+const getCurrentTheme = (
+  theme: string | undefined,
+  resolvedTheme: string | undefined
+) => resolvedTheme ?? (theme === "system" || !theme ? "light" : theme);
 
 export function Navbar() {
-  const { theme, setTheme } = useTheme();
+  const { theme, resolvedTheme, setTheme } = useTheme();
   const { lang, t, toggleLang } = useLang();
-  const [mounted, setMounted] = useState(false);
+  const hydrated = useHydrated();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const currentTheme = getCurrentTheme(theme, resolvedTheme);
+  const isDark = hydrated && currentTheme === "dark";
 
   return (
     <nav className="flex items-center gap-3.5 px-10 py-4.5 border-b border-border bg-card sticky top-0 z-10">
@@ -38,21 +42,17 @@ export function Navbar() {
               variant="outline"
               size="icon"
               className="h-8 w-8"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              onClick={() => setTheme(isDark ? "light" : "dark")}
             >
-              {mounted ? (
-                theme === "dark" ? (
-                  <Sun className="h-4 w-4" />
-                ) : (
-                  <Moon className="h-4 w-4" />
-                )
-              ) : (
+              {isDark ? (
                 <Sun className="h-4 w-4" />
+              ) : (
+                <Moon className="h-4 w-4" />
               )}
             </Button>
           </TooltipTrigger>
           <TooltipContent>
-            {mounted ? (theme === "dark" ? t.themeLight : t.themeDark) : t.themeLight}
+            {isDark ? t.themeLight : t.themeDark}
           </TooltipContent>
         </Tooltip>
         <Tooltip>
@@ -75,4 +75,3 @@ export function Navbar() {
     </nav>
   );
 }
-

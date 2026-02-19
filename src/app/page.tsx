@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { MapPin, Github, Heart, Map, ChevronRight, Layers } from "lucide-react";
+import { MapPin, Heart, Map, ChevronRight, Layers, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -32,7 +32,12 @@ export default function HomePage() {
             </Link>
           </Button>
           <Button asChild variant="outline" size="lg" className="gap-2">
-            <a href="https://github.com/DeBondor/simrailxyz" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://github.com/DeBondor/simrail.xyz"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${t.heroGithub} (opens in new tab)`}
+            >
               <Github className="h-4 w-4" />
               {t.heroGithub}
             </a>

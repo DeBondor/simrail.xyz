@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/providers/ThemeProvider";
 import { LangProvider } from "@/providers/LangProvider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Navbar } from "@/components/Navbar";
+import { RefreshLoadingOverlay } from "@/components/RefreshLoadingOverlay";
 
 export const metadata: Metadata = {
   title: "SimRail XYZ",
@@ -24,6 +25,7 @@ export default function RootLayout({
         <ThemeProvider>
           <LangProvider>
             <TooltipProvider>
+              <RefreshLoadingOverlay />
               <Navbar />
               {children}
             </TooltipProvider>
