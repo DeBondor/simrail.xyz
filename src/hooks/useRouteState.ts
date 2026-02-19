@@ -142,7 +142,6 @@ const STORAGE_KEY = "simrailxyz-route-state";
 export function useRouteState() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // Load persisted state from localStorage after mount (client only)
   useEffect(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -156,16 +155,13 @@ export function useRouteState() {
         dispatch({ type: "HYDRATE", payload: hydrated });
       }
     } catch {
-      // ignore
     }
   }, []);
 
-  // Persist state to localStorage on every change
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch {
-      // ignore
     }
   }, [state]);
 

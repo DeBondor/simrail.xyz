@@ -1,7 +1,6 @@
 import type { ColorScheme } from "./colorSchemes";
 import { BASE_W, H, TRACK_LEFT, RIGHT_MARGIN } from "./constants";
 
-// ── Types ──────────────────────────────────────────────
 export type SegmentStyle = "solid" | "dashed" | "mixed";
 
 export interface Station {
@@ -29,7 +28,6 @@ export interface DrawParams {
   colors: ColorScheme;
 }
 
-// ── Helpers ────────────────────────────────────────────
 function getCanvasWidth(N: number, fixedGap: number): number {
   return Math.max(BASE_W, TRACK_LEFT + fixedGap * (N - 1) + RIGHT_MARGIN);
 }
@@ -69,7 +67,6 @@ function stationX(
     : TRACK_LEFT + (trackRight - TRACK_LEFT) * (i / (n - 1));
 }
 
-// ── Drawing functions ──────────────────────────────────
 function drawStation(
   ctx: CanvasRenderingContext2D,
   x: number,
