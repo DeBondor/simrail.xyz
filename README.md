@@ -6,9 +6,9 @@ A set of free, open-source tools for the SimRail community, built with Next.js.
 
 ## ✨ Features
 
-- Route Generator: Generate aesthetic route boards for SimRail trains with category selection, intermediate stations, segment styles, XML import, and PNG export.
+- **Route Generator:** Generate aesthetic route boards for SimRail trains with category selection, intermediate stations, segment styles, XML import, and PNG export.
 
-- Live Map (Soon): Track train positions in real time on an interactive map of SimRail servers.
+- **Live Map (Soon):** Track train positions in real time on an interactive map of SimRail servers.
 
 ## 🚀 Getting Started
 
