@@ -45,4 +45,4 @@ npm start
 
 ## 🗒️ License
 
-This project is unofficial and not affiliated with SimRail. All content is provided under the [GPL-3.0 License](LICENSE).
+This project is unofficial and not affiliated with SimRail S.A. All content is provided under the [GPL-3.0 License](LICENSE).
