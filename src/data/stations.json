@@ -1,13 +1,197 @@
 {
   "groups": [
     {
-      "label": "Test Label",
+      "label": "LK1 Katowice - Warszawa Zachodnia",
       "stations": [
-        "Test Station 1",
-        "Test Station 2",
-        "Test Station 3"
+        "Katowice",
+        "Katowice Zawodzie",
+        "Katowice Szopienice Południowe",
+        "Sosnowiec Główny",
+        "Będzin",
+        "Będzin Miasto",
+        "Będzin Ksawera",
+        "Dąbrowa Górnicza",
+        "Dąbrowa Górnicza Gołonóg",
+        "Dąbrowa Górnicza Pogoria",
+        "Dąbrowa Górnicza Ząbkowice",
+        "Dąbrowa Górnicza Sikorka",
+        "Chruszczobród",
+        "Wiesiółka",
+        "Łazy Łc",
+        "Łazy Łb",
+        "Łazy Ła",
+        "Zawiercie",
+        "Zawiercie Borowe Pole",
+        "Myszków Mrzygłód",
+        "Myszków"
+      ]
+    },
+    {
+      "label": "LK4 CMK",
+      "stations": [
+        "Góra Włodowska",
+        "Starzyny",
+        "Psary",
+        "Knapówka",
+        "Czarnca",
+        "Żelisławice",
+        "Włoszczowa Północ",
+        "Olszamowice",
+        "Pilichowice",
+        "Opoczno Południe",
+        "Idzikowice",
+        "Strzałki",
+        "Biała Rawska",
+        "Szeligi",
+        "Korytów",
+        "Jaktorów",
+        "Grodzisk Mazowiecki"
+      ]
+    },
+    {
+      "label": "LK1 Rokciny - Warszawa Wschodnia",
+      "stations": [
+        "Rokciny",
+        "Chrusty Nowe",
+        "Koluszki",
+        "Wągry",
+        "Rogów",
+        "Przyłęk duży",
+        "Krosnowa",
+        "Lipce Reymontowskie",
+        "Płyćwia",
+        "Maków",
+        "Dąbrowice Skierniewickie",
+        "Skierniewice",
+        "Skierniewice Rawka",
+        "Radziwiłłów Mazowiecki",
+        "Jesionka",
+        "Sucha Żyrardowska",
+        "Żyrardów",
+        "Międzyborów",
+        "Jaktorów",
+        "Grodzisk Mazowiecki",
+        "Milanówek",
+        "Brwinów",
+        "Parzniew",
+        "Pruszków",
+        "Piastów",
+        "Józefinów",
+        "Warszawa Ursus-Niedźwiadek",
+        "Warszawa Ursus",
+        "Warszawa Włochy",
+        "Warszawa Zachodnia",
+        "Warszawa Główna",
+        "Warszawa Ochota",
+        "Warszawa Centralna",
+        "Warszawa Powiśle",
+        "Warszawa Stadion",
+        "Warszawa Wschodnia"
+      ]
+    },
+    {
+      "label": "LK62 Sędziszów - Katowice",
+      "stations": [
+        "Jędrzejów",
+        "Sędziszów",
+        "Klimontów",
+        "Kozłów",
+        "Tunel",
+        "Charsznica",
+        "Gajówka",
+        "Jeżówka",
+        "Wolbrom",
+        "Zarzecze",
+        "Chrząstowice Olkuskie",
+        "Jaroszowiec Olkuski",
+        "Olkusz",
+        "Bukowno",
+        "Bukowno Przymiarki",
+        "Sławków",
+        "Dąbrowa Górnicza Wschodnia",
+        "Dąbrowa Górnicza Strzemieszyce",
+        "Sosnowiec Kazimierz",
+        "Sosnowiec Porąbka",
+        "Sosnowiec Dańdówka",
+        "Sosnowiec Południowy",
+        "Sosnowiec Główny"
+      ]
+    },
+    {
+      "label": "LK154/171 Łazy - Tychy",
+      "stations": [
+        "Przemiarki",
+        "Dąbrowa Górnicza Towarowa",
+        "Kozioł",
+        "Dąbrowa Górnicza Wschodnia",
+        "Dorota",
+        "Juliusz",
+        "Sosnowiec Dańdówka",
+        "Stawiska",
+        "Katowice Janów",
+        "Staszic",
+        "Katowice Muchowiec Staszic"
+      ]
+    },
+    {
+      "label": "LK8 Tunel - Kraków",
+      "stations": [
+        "Tunel",
+        "Dziadówki",
+        "Miechów",
+        "Kamieńczyce",
+        "Szczepanowice",
+        "Smroków",
+        "Słomniki",
+        "Słomniki Miasto",
+        "Niedźwiedź",
+        "Goszcza",
+        "Łuczyce",
+        "Baranówka",
+        "Zastów",
+        "Raciborowice",
+        "Kraków Batowice",
+        "Kraków Przedmieście",
+        "Kraków Główny",
+        "Kraków Zabłocie"
+      ]
+    },
+    {
+        "label": "LK17 Koluszki - Łódź Fabryczna",
+        "stations": [
+          "Żakowice",
+          "Gałkówek",
+          "Justynów",
+          "Biedoń",
+          "Łódź Andrzejów",
+          "Łódź Widzew",
+          "Łódź Chojny",
+          "Łódź Fabryczna"
+        ]
+    },
+    {
+      "label": "Other stations",
+      "stations": [
+        "Sprowa",
+        "Dąbrowa Górnicza Południowa",
+        "Dąbrowa Górnicza Huta Katowice",
+        "Puszcza Mariańska",
+        "Mikołajów",
+        "Słotwiny",
+        "Łódź Zarzew",
+        "Łódź Dąbrowa",
+        "Bełchów",
+        "Marków",
+        "Koniecpol",
+        "Radzice",
+        "Czarnca",
+        "Żelisławice",
+        "Sosnowiec Maczki",
+        "Borowa Górka",
+        "Mysłowice",
+        "Katowice Towarowa KTC",
+        "Brynów"
       ]
     }
   ]
 }
-
