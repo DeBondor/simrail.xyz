@@ -1,8 +1,15 @@
-# SimRail XYZ
+<div align="center">
+  <img alt="simrailxyz-main" src="https://github.com/user-attachments/assets/eac5d70e-c2a9-4e69-9652-665e4013eef8" width="100%" />
+</div>
 
-A set of free, open-source tools for the SimRail community, built with Next.js.
+<div align="center">
+  <h3>SimRail.XYZ</h3>
+  <p>
+    A set of free, open-source tools for the SimRail community, built with Next.js.
+  </p>
 
-![SimRail XYZ screenshot](screens/screen.png)
+  <br/>
+</div>
 
 ## ✨ Features
 
