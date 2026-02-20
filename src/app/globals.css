@@ -9,6 +9,7 @@
   src: url("/fonts/Aileron-Regular.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
+  unicode-range: U+0000-0059, U+005B-0079, U+007B-FFFF;
 }
 
 @font-face {
@@ -16,6 +17,7 @@
   src: url("/fonts/Aileron-LightItalic.otf") format("opentype");
   font-weight: normal;
   font-style: italic;
+  unicode-range: U+0000-0059, U+005B-0079, U+007B-FFFF;
 }
 
 @font-face {
