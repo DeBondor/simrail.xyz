@@ -155,15 +155,20 @@ export function useRouteState() {
         };
         dispatch({ type: "HYDRATE", payload: hydrated });
       }
-    } catch {
+    } catch (e) {
+      console.warn("Failed to read route state from localStorage:", e);
     }
   }, []);
 
   useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    } catch {
-    }
+    const timer = setTimeout(() => {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {
+        console.warn("Failed to save route state to localStorage:", e);
+      }
+    }, 300);
+    return () => clearTimeout(timer);
   }, [state]);
 
   return { state, dispatch };

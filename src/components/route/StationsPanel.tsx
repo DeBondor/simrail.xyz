@@ -403,7 +403,7 @@ export function StationsPanel({ state, dispatch }: StationsPanelProps) {
                   <Command>
                     <CommandInput placeholder={t.searchPlaceholder} />
                     <CommandList>
-                      <CommandEmpty>No stations found.</CommandEmpty>
+                      <CommandEmpty>{t.noStationsFound}</CommandEmpty>
                       {stationsData.groups.map((group) => (
                         <CommandGroup key={group.label} heading={group.label}>
                           {group.stations.map((name) => (

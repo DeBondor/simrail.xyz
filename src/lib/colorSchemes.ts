@@ -3,7 +3,7 @@ export interface ColorScheme {
   secondary: string;
 }
 
-export type CategoryKey = "EIP" | "IC" | "TLK" | "R" | "TME" | "TDE" | "CUSTOM";
+export type CategoryKey = "EIP" | "IC" | "TLK" | "IR" | "R" | "TME" | "TDE" | "CUSTOM";
 
 export const colorSchemes: Record<string, ColorScheme> = {
   EIP: { primary: "#4D1B17", secondary: "#CF5D54" },

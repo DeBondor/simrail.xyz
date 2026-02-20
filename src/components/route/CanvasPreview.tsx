@@ -64,13 +64,17 @@ export function CanvasPreview({ state }: CanvasPreviewProps) {
     return () => clearTimeout(timerRef.current);
   }, [render]);
 
+  const fontsLoadedRef = useRef(false);
+
   useEffect(() => {
+    if (fontsLoadedRef.current) return;
+    fontsLoadedRef.current = true;
     Promise.all([
       document.fonts.ready,
       document.fonts.load('normal 48px "AileronCanvas"'),
       document.fonts.load('italic 48px "AileronCanvas"'),
     ]).then(render);
-  }, [render]);
+  }, []);
 
   return (
     <div className="flex-1 min-h-0 border border-border rounded-lg checkerboard-bg p-4 flex justify-center items-center overflow-hidden">

@@ -35,7 +35,6 @@ export function AdvancedPanel({ state, dispatch }: AdvancedPanelProps) {
       </CollapsibleTrigger>
       <CollapsibleContent>
         <div className="p-5 space-y-4">
-          {/* End position slider */}
           <div className="space-y-2">
             <Label className="text-[0.68rem] font-bold text-muted-foreground uppercase tracking-wider">
               {t.labelEndX}{" "}
@@ -53,7 +52,6 @@ export function AdvancedPanel({ state, dispatch }: AdvancedPanelProps) {
             />
           </div>
 
-          {/* Grid 3 - shapes */}
           <div className="grid grid-cols-3 gap-3.5">
             <div className="space-y-1.5">
               <Label className="text-[0.68rem] font-bold text-muted-foreground uppercase tracking-wider">
@@ -93,7 +91,6 @@ export function AdvancedPanel({ state, dispatch }: AdvancedPanelProps) {
             </div>
           </div>
 
-          {/* Grid 3 - track */}
           <div className="grid grid-cols-3 gap-3.5">
             <div className="space-y-1.5">
               <Label className="text-[0.68rem] font-bold text-muted-foreground uppercase tracking-wider">
@@ -133,7 +130,6 @@ export function AdvancedPanel({ state, dispatch }: AdvancedPanelProps) {
             </div>
           </div>
 
-          {/* Font size sliders */}
           <div className="space-y-2">
             <Label className="text-[0.68rem] font-bold text-muted-foreground uppercase tracking-wider">
               {t.advFontSizeStart}{" "}
@@ -183,7 +179,6 @@ export function AdvancedPanel({ state, dispatch }: AdvancedPanelProps) {
             />
           </div>
 
-          {/* Grid 2 - sidebar + reset */}
           <div className="grid grid-cols-2 gap-3.5">
             <div className="space-y-1.5">
               <Label className="text-[0.68rem] font-bold text-muted-foreground uppercase tracking-wider">

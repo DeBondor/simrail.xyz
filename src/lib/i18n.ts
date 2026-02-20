@@ -36,7 +36,7 @@ export interface Translations {
   advFontSizeMid: string;
   advFontSizeEnd: string;
   advReset: string;
-  navTools: string;
+
   heroBadge: string;
   heroTitle: string;
   heroDesc: string;
@@ -49,12 +49,16 @@ export interface Translations {
   toolLiveMapDesc: string;
   tagAvailable: string;
   tagSoon: string;
+  toolTimetableTitle: string;
+  toolTimetableDesc: string;
   footerDisclaimer: string;
+  footerLicense: string;
   importXmlTitle: string;
   clearStationsTitle: string;
   themeDark: string;
   themeLight: string;
   switchLangTitle: string;
+  noStationsFound: string;
 }
 
 export const LANGS: Record<Lang, Translations> = {
@@ -95,7 +99,7 @@ export const LANGS: Record<Lang, Translations> = {
     advFontSizeMid: "Tekst st. pośredniej",
     advFontSizeEnd: "Tekst st. końcowej",
     advReset: "Przywróć domyślne",
-    navTools: "Narzędzia",
+
     heroBadge: "Narzędzia dla SimRail",
     heroTitle: "Witaj w",
     heroDesc:
@@ -111,13 +115,18 @@ export const LANGS: Record<Lang, Translations> = {
       "Śledź pozycje pociągów w czasie rzeczywistym na interaktywnej mapie serwerów SimRail.",
     tagAvailable: "Dostępne",
     tagSoon: "Wkrótce",
+    toolTimetableTitle: "EDR Timetable",
+    toolTimetableDesc:
+      "Przeglądaj i analizuj rozkłady jazdy EDR w przejrzystym, interaktywnym widoku.",
     footerDisclaimer:
       "© 2026 SimRail XYZ — narzędzia nieoficjalne, nieafiliowane z SimRail.",
+    footerLicense: "Licencja",
     importXmlTitle: "Importuj rozkład jazdy SimRail (.xml)",
     clearStationsTitle: "Wyczyść stacje pośrednie",
     themeDark: "Tryb ciemny",
     themeLight: "Tryb jasny",
     switchLangTitle: "Przełącz na angielski",
+    noStationsFound: "Nie znaleziono stacji.",
   },
   en: {
     panelRoute: "Route",
@@ -156,7 +165,7 @@ export const LANGS: Record<Lang, Translations> = {
     advFontSizeMid: "Mid station font",
     advFontSizeEnd: "End station font",
     advReset: "Reset defaults",
-    navTools: "Tools",
+
     heroBadge: "Tools for SimRail",
     heroTitle: "Welcome to",
     heroDesc:
@@ -172,13 +181,18 @@ export const LANGS: Record<Lang, Translations> = {
       "Track train positions in real time on an interactive map of SimRail servers.",
     tagAvailable: "Available",
     tagSoon: "Coming soon",
+    toolTimetableTitle: "EDR Timetable",
+    toolTimetableDesc:
+      "Browse and analyze EDR timetables in a clear, interactive view.",
     footerDisclaimer:
       "© 2026 SimRail XYZ — unofficial tools, not affiliated with SimRail.",
+    footerLicense: "License",
     importXmlTitle: "Import SimRail timetable (.xml)",
     clearStationsTitle: "Clear intermediate stations",
     themeDark: "Dark mode",
     themeLight: "Light mode",
     switchLangTitle: "Switch to Polish",
+    noStationsFound: "No stations found.",
   },
 };
 

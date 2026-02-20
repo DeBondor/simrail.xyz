@@ -6,6 +6,7 @@ import {
   useState,
   useCallback,
   useEffect,
+  useMemo,
   type ReactNode,
 } from "react";
 import { LANGS, type Lang, type Translations } from "@/lib/i18n";
@@ -38,8 +39,10 @@ export function LangProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
+  const value = useMemo(() => ({ lang, t: LANGS[lang], toggleLang }), [lang, toggleLang]);
+
   return (
-    <LangContext.Provider value={{ lang, t: LANGS[lang], toggleLang }}>
+    <LangContext.Provider value={value}>
       {children}
     </LangContext.Provider>
   );

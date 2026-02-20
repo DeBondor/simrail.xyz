@@ -32,11 +32,11 @@ export function Navbar() {
   return (
     <nav className="flex items-center gap-3.5 px-10 py-4.5 border-b border-border bg-card sticky top-0 z-10">
       <Link href="/" className="flex items-center gap-3.5 no-underline">
-        <div className="w-8.5 h-8.5 bg-red-500 rounded-lg flex items-center justify-center text-base font-bold text-white shrink-0">
+        <div className="w-8.5 h-8.5 bg-primary rounded-lg flex items-center justify-center text-base font-bold text-primary-foreground shrink-0">
           SR
         </div>
         <div className="text-[0.95rem] font-bold tracking-widest uppercase text-foreground">
-          <span className="text-red-500">SimRail</span> XYZ{" "}
+          <span className="text-primary">SimRail</span> XYZ{" "}
           {subtitle && (
             <small className="font-normal text-muted-foreground text-[0.75em] tracking-wider">
               / {subtitle}
