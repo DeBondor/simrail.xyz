@@ -57,7 +57,7 @@ export interface Translations {
   clearStationsTitle: string;
   themeDark: string;
   themeLight: string;
-  switchLangTitle: string;
+
   noStationsFound: string;
 }
 
@@ -125,7 +125,7 @@ export const LANGS: Record<Lang, Translations> = {
     clearStationsTitle: "Wyczyść stacje pośrednie",
     themeDark: "Tryb ciemny",
     themeLight: "Tryb jasny",
-    switchLangTitle: "Switch to English",
+
     noStationsFound: "Nie znaleziono stacji.",
   },
   en: {
@@ -191,7 +191,7 @@ export const LANGS: Record<Lang, Translations> = {
     clearStationsTitle: "Clear intermediate stations",
     themeDark: "Dark mode",
     themeLight: "Light mode",
-    switchLangTitle: "Auf Deutsch wechseln",
+
     noStationsFound: "No stations found.",
   },
   de: {
@@ -257,7 +257,7 @@ export const LANGS: Record<Lang, Translations> = {
     clearStationsTitle: "Zwischenbahnhöfe löschen",
     themeDark: "Dunkelmodus",
     themeLight: "Hellmodus",
-    switchLangTitle: "Przełącz na polski",
+
     noStationsFound: "Keine Bahnhöfe gefunden.",
   },
 };
