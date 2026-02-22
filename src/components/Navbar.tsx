@@ -1,28 +1,40 @@
 "use client";
 
+import { useState } from "react";
 import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Sun, Moon, Globe } from "lucide-react";
+import { Sun, Moon, Globe, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { useLang } from "@/providers/LangProvider";
 import { useHydrated } from "@/hooks/useHydrated";
+import { LANG_LABELS, type Lang } from "@/lib/i18n";
 
 const getCurrentTheme = (
   theme: string | undefined,
   resolvedTheme: string | undefined
 ) => resolvedTheme ?? (theme === "system" || !theme ? "light" : theme);
 
+
+
+const LANG_ORDER: Lang[] = ["pl", "en", "de", "cz", "fr"];
+
 export function Navbar() {
   const { theme, resolvedTheme, setTheme } = useTheme();
-  const { lang, t, toggleLang } = useLang();
+  const { lang, t, switchLang } = useLang();
   const hydrated = useHydrated();
   const pathname = usePathname();
+  const [langOpen, setLangOpen] = useState(false);
 
   const currentTheme = getCurrentTheme(theme, resolvedTheme);
   const isDark = hydrated && currentTheme === "dark";
@@ -64,23 +76,44 @@ export function Navbar() {
             {isDark ? t.themeLight : t.themeDark}
           </TooltipContent>
         </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant="outline"
-              size="icon"
-              className="h-8 w-auto px-2.5 gap-1.5"
-              onClick={toggleLang}
-            >
-              <Globe className="h-3.5 w-3.5" />
-              <span className="text-xs font-bold tracking-wider">
-                {lang.toUpperCase()}
-              </span>
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>{t.switchLangTitle}</TooltipContent>
-        </Tooltip>
+        <Popover open={langOpen} onOpenChange={setLangOpen}>
+          <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="h-8 w-auto px-2.5 gap-1.5"
+                >
+                  <Globe className="h-3.5 w-3.5" />
+                  <span className="text-xs font-bold tracking-wider">
+                    {lang.toUpperCase()}
+                  </span>
+                </Button>
+              </PopoverTrigger>
+          <PopoverContent
+            align="end"
+            className="w-44 p-1"
+          >
+            {LANG_ORDER.map((code) => (
+              <button
+                key={code}
+                onClick={() => {
+                  switchLang(code);
+                  setLangOpen(false);
+                }}
+                className={`flex items-center gap-2.5 w-full rounded-sm px-2.5 py-1.5 text-sm cursor-pointer transition-colors
+                  ${code === lang
+                    ? "bg-accent text-accent-foreground font-medium"
+                    : "hover:bg-accent/50 text-foreground"
+                  }`}
+              >
+
+                <span className="flex-1 text-left">{LANG_LABELS[code]}</span>
+                {code === lang && <Check className="h-3.5 w-3.5 text-primary" />}
+              </button>
+            ))}
+          </PopoverContent>
+        </Popover>
       </div>
     </nav>
   );
 }
+

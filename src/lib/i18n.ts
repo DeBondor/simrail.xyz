@@ -1,4 +1,4 @@
-export type Lang = "pl" | "en" | "de";
+export type Lang = "pl" | "en" | "de" | "cz" | "fr";
 
 export interface Translations {
   panelRoute: string;
@@ -60,6 +60,14 @@ export interface Translations {
 
   noStationsFound: string;
 }
+
+export const LANG_LABELS: Record<Lang, string> = {
+  pl: "Polski",
+  en: "English",
+  de: "Deutsch",
+  cz: "Čeština",
+  fr: "Français",
+};
 
 export const LANGS: Record<Lang, Translations> = {
   pl: {
@@ -257,8 +265,140 @@ export const LANGS: Record<Lang, Translations> = {
     clearStationsTitle: "Zwischenbahnhöfe löschen",
     themeDark: "Dunkelmodus",
     themeLight: "Hellmodus",
-
+    switchLangTitle: "Przełącz na polski",
     noStationsFound: "Keine Bahnhöfe gefunden.",
+  },
+  cz: {
+    panelRoute: "Trasa",
+    panelStations: "Stanice",
+    labelCat: "Kategorie",
+    labelRouteNum: "Číslo vlaku",
+    labelStart: "Výchozí stanice",
+    labelEnd: "Cílová stanice",
+    labelIntermediate: "Mezilehlé stanice",
+    labelCatName: "Název kategorie",
+    labelPrimary: "Barva pozadí (primární)",
+    labelSecondary: "Barva zvýraznění (sekundární)",
+    badgeIntermediate: (n) =>
+      n + (n === 1 ? " mezilehlá" : " mezilehlých"),
+    presetPlaceholder: "— Vyberte ze seznamu —",
+    customPlaceholder: "nebo zadejte vlastní…",
+    btnAdd: "Přidat",
+    btnDownload: "Stáhnout PNG",
+    dragTitle: "Přetáhnout",
+    removeTitle: "Odebrat",
+    segmentLabel: (i) => `úsek ${i + 1}`,
+    segStyleNames: ["Plná", "Přerušovaná", "Smíšená"],
+    btnClearStations: "Vymazat",
+    searchPlaceholder: "Hledat stanice…",
+    panelEndPos: "Konec trasy",
+    labelEndX: "Koncová pozice",
+    panelAdv: "Pokročilé",
+    advSqSize: "Čtverec (px)",
+    advTriW: "Trojúhelník š.",
+    advTriH: "Trojúhelník v.",
+    advTrackY: "Pozice koleje Y",
+    advLineH: "Tloušťka čáry",
+    advFixedGap: "Rozestup stanic",
+    advSidebarW: "Šířka postranního panelu",
+    advFontSizeStart: "Písmo výchozí stanice",
+    advFontSizeMid: "Písmo mezilehlé stanice",
+    advFontSizeEnd: "Písmo cílové stanice",
+    advReset: "Obnovit výchozí",
+
+    heroBadge: "Nástroje pro SimRail",
+    heroTitle: "Vítejte v",
+    heroDesc:
+      "Sada bezplatných nástrojů pro komunitu SimRail.",
+    heroRouteGen: "Route Generator",
+    heroGithub: "GitHub",
+    dividerTools: "Dostupné nástroje",
+    toolRouteTitle: "Route Generator",
+    toolRouteDesc:
+      "Generujte estetické trasové tabule pro vlaky SimRail s výběrem kategorie, mezilehlých stanic a barevné palety.",
+    toolLiveMapTitle: "Live Map",
+    toolLiveMapDesc:
+      "Sledujte polohy vlaků v reálném čase na interaktivní mapě serverů SimRail.",
+    tagAvailable: "Dostupné",
+    tagSoon: "Již brzy",
+    toolTimetableTitle: "EDR Jízdní řád",
+    toolTimetableDesc:
+      "Procházejte a analyzujte jízdní řády EDR v přehledném interaktivním zobrazení.",
+    footerDisclaimer:
+      "© 2026 SimRail XYZ — neoficiální nástroje, nesouvisí se SimRail.",
+    footerLicense: "Licence",
+    importXmlTitle: "Importovat jízdní řád SimRail (.xml)",
+    clearStationsTitle: "Vymazat mezilehlé stanice",
+    themeDark: "Tmavý režim",
+    themeLight: "Světlý režim",
+    switchLangTitle: "Passer au français",
+    noStationsFound: "Žádné stanice nenalezeny.",
+  },
+  fr: {
+    panelRoute: "Itinéraire",
+    panelStations: "Gares",
+    labelCat: "Catégorie",
+    labelRouteNum: "Numéro de train",
+    labelStart: "Gare de départ",
+    labelEnd: "Gare d'arrivée",
+    labelIntermediate: "Gares intermédiaires",
+    labelCatName: "Nom de la catégorie",
+    labelPrimary: "Couleur de fond (primaire)",
+    labelSecondary: "Couleur d'accent (secondaire)",
+    badgeIntermediate: (n) =>
+      n + (n === 1 ? " intermédiaire" : " intermédiaires"),
+    presetPlaceholder: "— Choisir dans la liste —",
+    customPlaceholder: "ou saisir manuellement…",
+    btnAdd: "Ajouter",
+    btnDownload: "Télécharger PNG",
+    dragTitle: "Glisser",
+    removeTitle: "Supprimer",
+    segmentLabel: (i) => `tronçon ${i + 1}`,
+    segStyleNames: ["Continue", "Pointillée", "Mixte"],
+    btnClearStations: "Effacer",
+    searchPlaceholder: "Rechercher des gares…",
+    panelEndPos: "Fin de l'itinéraire",
+    labelEndX: "Position finale",
+    panelAdv: "Avancé",
+    advSqSize: "Carré (px)",
+    advTriW: "Triangle L",
+    advTriH: "Triangle H",
+    advTrackY: "Position Y voie",
+    advLineH: "Épaisseur de ligne",
+    advFixedGap: "Espacement des gares",
+    advSidebarW: "Largeur du panneau",
+    advFontSizeStart: "Police gare de départ",
+    advFontSizeMid: "Police gare intermédiaire",
+    advFontSizeEnd: "Police gare d'arrivée",
+    advReset: "Réinitialiser",
+
+    heroBadge: "Outils pour SimRail",
+    heroTitle: "Bienvenue sur",
+    heroDesc:
+      "Un ensemble d'outils gratuits pour la communauté SimRail.",
+    heroRouteGen: "Route Generator",
+    heroGithub: "GitHub",
+    dividerTools: "Outils disponibles",
+    toolRouteTitle: "Route Generator",
+    toolRouteDesc:
+      "Générez des panneaux d'itinéraire esthétiques pour les trains SimRail avec sélection de catégorie, gares intermédiaires et palette de couleurs.",
+    toolLiveMapTitle: "Live Map",
+    toolLiveMapDesc:
+      "Suivez les positions des trains en temps réel sur une carte interactive des serveurs SimRail.",
+    tagAvailable: "Disponible",
+    tagSoon: "Bientôt",
+    toolTimetableTitle: "Horaires EDR",
+    toolTimetableDesc:
+      "Parcourez et analysez les horaires EDR dans une vue interactive et claire.",
+    footerDisclaimer:
+      "© 2026 SimRail XYZ — outils non officiels, non affiliés à SimRail.",
+    footerLicense: "Licence",
+    importXmlTitle: "Importer un horaire SimRail (.xml)",
+    clearStationsTitle: "Effacer les gares intermédiaires",
+    themeDark: "Mode sombre",
+    themeLight: "Mode clair",
+    switchLangTitle: "Przełącz na polski",
+    noStationsFound: "Aucune gare trouvée.",
   },
 };
 
