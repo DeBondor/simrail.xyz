@@ -57,7 +57,6 @@ export interface Translations {
   clearStationsTitle: string;
   themeDark: string;
   themeLight: string;
-
   noStationsFound: string;
 }
 
@@ -107,7 +106,6 @@ export const LANGS: Record<Lang, Translations> = {
     advFontSizeMid: "Tekst st. pośredniej",
     advFontSizeEnd: "Tekst st. końcowej",
     advReset: "Przywróć domyślne",
-
     heroBadge: "Narzędzia dla SimRail",
     heroTitle: "Witaj w",
     heroDesc:
@@ -133,7 +131,6 @@ export const LANGS: Record<Lang, Translations> = {
     clearStationsTitle: "Wyczyść stacje pośrednie",
     themeDark: "Tryb ciemny",
     themeLight: "Tryb jasny",
-
     noStationsFound: "Nie znaleziono stacji.",
   },
   en: {
@@ -199,7 +196,6 @@ export const LANGS: Record<Lang, Translations> = {
     clearStationsTitle: "Clear intermediate stations",
     themeDark: "Dark mode",
     themeLight: "Light mode",
-
     noStationsFound: "No stations found.",
   },
   de: {
@@ -265,7 +261,6 @@ export const LANGS: Record<Lang, Translations> = {
     clearStationsTitle: "Zwischenbahnhöfe löschen",
     themeDark: "Dunkelmodus",
     themeLight: "Hellmodus",
-    switchLangTitle: "Przełącz na polski",
     noStationsFound: "Keine Bahnhöfe gefunden.",
   },
   cz: {
@@ -331,7 +326,6 @@ export const LANGS: Record<Lang, Translations> = {
     clearStationsTitle: "Vymazat mezilehlé stanice",
     themeDark: "Tmavý režim",
     themeLight: "Světlý režim",
-    switchLangTitle: "Passer au français",
     noStationsFound: "Žádné stanice nenalezeny.",
   },
   fr: {
@@ -397,7 +391,6 @@ export const LANGS: Record<Lang, Translations> = {
     clearStationsTitle: "Effacer les gares intermédiaires",
     themeDark: "Mode sombre",
     themeLight: "Mode clair",
-    switchLangTitle: "Przełącz na polski",
     noStationsFound: "Aucune gare trouvée.",
   },
 };
