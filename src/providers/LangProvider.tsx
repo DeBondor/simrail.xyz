@@ -9,39 +9,35 @@ import {
   useMemo,
   type ReactNode,
 } from "react";
-import { LANGS, type Lang, type Translations } from "@/lib/i18n";
+import { LANGS, LANG_LABELS, type Lang, type Translations } from "@/lib/i18n";
 
 const DEFAULT_LANG: Lang = "pl";
+const VALID_LANGS = Object.keys(LANGS) as Lang[];
 
 interface LangContextValue {
   lang: Lang;
   t: Translations;
-  toggleLang: () => void;
+  switchLang: (next: Lang) => void;
 }
 
 const LangContext = createContext<LangContextValue | null>(null);
 
 export function LangProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
+  const [lang, setLangState] = useState<Lang>(DEFAULT_LANG);
 
   useEffect(() => {
     const stored = localStorage.getItem("simrailxyz-lang");
-    if (stored === "en" || stored === "pl" || stored === "de") {
-      setLang(stored);
+    if (stored && VALID_LANGS.includes(stored as Lang)) {
+      setLangState(stored as Lang);
     }
   }, []);
 
-  const LANG_ORDER: Lang[] = ["pl", "en", "de"];
-  const toggleLang = useCallback(() => {
-    setLang((prev) => {
-      const idx = LANG_ORDER.indexOf(prev);
-      const next = LANG_ORDER[(idx + 1) % LANG_ORDER.length];
-      localStorage.setItem("simrailxyz-lang", next);
-      return next;
-    });
+  const switchLang = useCallback((next: Lang) => {
+    setLangState(next);
+    localStorage.setItem("simrailxyz-lang", next);
   }, []);
 
-  const value = useMemo(() => ({ lang, t: LANGS[lang], toggleLang }), [lang, toggleLang]);
+  const value = useMemo(() => ({ lang, t: LANGS[lang], switchLang }), [lang, switchLang]);
 
   return (
     <LangContext.Provider value={value}>
