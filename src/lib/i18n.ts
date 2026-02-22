@@ -1,4 +1,4 @@
-export type Lang = "pl" | "en";
+export type Lang = "pl" | "en" | "de";
 
 export interface Translations {
   panelRoute: string;
@@ -125,7 +125,7 @@ export const LANGS: Record<Lang, Translations> = {
     clearStationsTitle: "Wyczyść stacje pośrednie",
     themeDark: "Tryb ciemny",
     themeLight: "Tryb jasny",
-    switchLangTitle: "Przełącz na angielski",
+    switchLangTitle: "Switch to English",
     noStationsFound: "Nie znaleziono stacji.",
   },
   en: {
@@ -191,8 +191,74 @@ export const LANGS: Record<Lang, Translations> = {
     clearStationsTitle: "Clear intermediate stations",
     themeDark: "Dark mode",
     themeLight: "Light mode",
-    switchLangTitle: "Switch to Polish",
+    switchLangTitle: "Auf Deutsch wechseln",
     noStationsFound: "No stations found.",
+  },
+  de: {
+    panelRoute: "Strecke",
+    panelStations: "Bahnhöfe",
+    labelCat: "Kategorie",
+    labelRouteNum: "Zugnummer",
+    labelStart: "Startbahnhof",
+    labelEnd: "Endbahnhof",
+    labelIntermediate: "Zwischenbahnhöfe",
+    labelCatName: "Kategoriename",
+    labelPrimary: "Hintergrundfarbe (primär)",
+    labelSecondary: "Akzentfarbe (sekundär)",
+    badgeIntermediate: (n) =>
+      n + (n === 1 ? " Zwischenhalt" : " Zwischenhalte"),
+    presetPlaceholder: "— Aus Liste wählen —",
+    customPlaceholder: "oder eigene eingeben…",
+    btnAdd: "Hinzufügen",
+    btnDownload: "PNG herunterladen",
+    dragTitle: "Ziehen",
+    removeTitle: "Entfernen",
+    segmentLabel: (i) => `Abschnitt ${i + 1}`,
+    segStyleNames: ["Durchgehend", "Gestrichelt", "Gemischt"],
+    btnClearStations: "Löschen",
+    searchPlaceholder: "Bahnhöfe suchen…",
+    panelEndPos: "Streckenende",
+    labelEndX: "Endposition",
+    panelAdv: "Erweitert",
+    advSqSize: "Quadrat (px)",
+    advTriW: "Dreieck B",
+    advTriH: "Dreieck H",
+    advTrackY: "Gleis Y-Pos.",
+    advLineH: "Linienstärke",
+    advFixedGap: "Bahnhofsabstand",
+    advSidebarW: "Seitenleistenbreite",
+    advFontSizeStart: "Schrift Startbahnhof",
+    advFontSizeMid: "Schrift Zwischenbahnhof",
+    advFontSizeEnd: "Schrift Endbahnhof",
+    advReset: "Zurücksetzen",
+
+    heroBadge: "Werkzeuge für SimRail",
+    heroTitle: "Willkommen bei",
+    heroDesc:
+      "Eine Sammlung kostenloser Werkzeuge für die SimRail-Community.",
+    heroRouteGen: "Route Generator",
+    heroGithub: "GitHub",
+    dividerTools: "Verfügbare Werkzeuge",
+    toolRouteTitle: "Route Generator",
+    toolRouteDesc:
+      "Erstelle ästhetische Streckentafeln für SimRail-Züge mit Kategorieauswahl, Zwischenstationen und Farbpalette.",
+    toolLiveMapTitle: "Live Map",
+    toolLiveMapDesc:
+      "Verfolge Zugpositionen in Echtzeit auf einer interaktiven Karte der SimRail-Server.",
+    tagAvailable: "Verfügbar",
+    tagSoon: "Demnächst",
+    toolTimetableTitle: "EDR Fahrplan",
+    toolTimetableDesc:
+      "Durchsuche und analysiere EDR-Fahrpläne in einer übersichtlichen, interaktiven Ansicht.",
+    footerDisclaimer:
+      "© 2026 SimRail XYZ — inoffizielle Werkzeuge, nicht mit SimRail verbunden.",
+    footerLicense: "Lizenz",
+    importXmlTitle: "SimRail-Fahrplan importieren (.xml)",
+    clearStationsTitle: "Zwischenbahnhöfe löschen",
+    themeDark: "Dunkelmodus",
+    themeLight: "Hellmodus",
+    switchLangTitle: "Przełącz na polski",
+    noStationsFound: "Keine Bahnhöfe gefunden.",
   },
 };
 

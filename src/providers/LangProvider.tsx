@@ -26,14 +26,16 @@ export function LangProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const stored = localStorage.getItem("simrailxyz-lang");
-    if (stored === "en" || stored === "pl") {
+    if (stored === "en" || stored === "pl" || stored === "de") {
       setLang(stored);
     }
   }, []);
 
+  const LANG_ORDER: Lang[] = ["pl", "en", "de"];
   const toggleLang = useCallback(() => {
     setLang((prev) => {
-      const next = prev === "pl" ? "en" : "pl";
+      const idx = LANG_ORDER.indexOf(prev);
+      const next = LANG_ORDER[(idx + 1) % LANG_ORDER.length];
       localStorage.setItem("simrailxyz-lang", next);
       return next;
     });
