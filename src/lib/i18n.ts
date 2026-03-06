@@ -59,6 +59,8 @@ export interface Translations {
   noStationsFound: string;
   advDualGap: string;
   labelRoutes: string;
+  route1: string;
+  route2: string;
   addRoute: string;
   copyRoute: string;
   removeRoute2: string;
@@ -141,6 +143,8 @@ export const LANGS: Record<Lang, Translations> = {
     noStationsFound: "Nie znaleziono stacji.",
     advDualGap: "Odstęp między trasami",
     labelRoutes: "Trasy",
+    route1: "Trasa 1",
+    route2: "Trasa 2",
     addRoute: "Dodaj trasę",
     copyRoute: "Skopiuj Trasę 1 do Trasy 2",
     removeRoute2: "Usuń Trasę 2",
@@ -214,6 +218,8 @@ export const LANGS: Record<Lang, Translations> = {
     noStationsFound: "No stations found.",
     advDualGap: "Route gap",
     labelRoutes: "Routes",
+    route1: "Route 1",
+    route2: "Route 2",
     addRoute: "Add Route",
     copyRoute: "Copy Route 1 settings into Route 2",
     removeRoute2: "Remove Route 2",
@@ -287,6 +293,8 @@ export const LANGS: Record<Lang, Translations> = {
     noStationsFound: "Keine Bahnhöfe gefunden.",
     advDualGap: "Streckenabstand",
     labelRoutes: "Strecken",
+    route1: "Strecke 1",
+    route2: "Strecke 2",
     addRoute: "Strecke hinzufügen",
     copyRoute: "Strecke 1 in Strecke 2 kopieren",
     removeRoute2: "Strecke 2 entfernen",
@@ -360,6 +368,8 @@ export const LANGS: Record<Lang, Translations> = {
     noStationsFound: "Žádné stanice nenalezeny.",
     advDualGap: "Mezera mezi trasami",
     labelRoutes: "Trasy",
+    route1: "Trasa 1",
+    route2: "Trasa 2",
     addRoute: "Přidat trasu",
     copyRoute: "Zkopírovat Trasu 1 do Trasy 2",
     removeRoute2: "Odebrat Trasu 2",
@@ -433,6 +443,8 @@ export const LANGS: Record<Lang, Translations> = {
     noStationsFound: "Aucune gare trouvée.",
     advDualGap: "Écart entre itinéraires",
     labelRoutes: "Itinéraires",
+    route1: "Itinéraire 1",
+    route2: "Itinéraire 2",
     addRoute: "Ajouter un itinéraire",
     copyRoute: "Copier l'itinéraire 1 dans l'itinéraire 2",
     removeRoute2: "Supprimer l'itinéraire 2",

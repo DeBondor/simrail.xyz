@@ -40,7 +40,7 @@ export default function RouteClient() {
             )}
             onClick={() => dispatch({ type: "SET_ACTIVE_ROUTE", payload: 0 })}
           >
-            Route 1
+            {t.route1}
           </button>
 
           {state.secondRouteEnabled ? (
@@ -53,7 +53,7 @@ export default function RouteClient() {
               )}
               onClick={() => dispatch({ type: "SET_ACTIVE_ROUTE", payload: 1 })}
             >
-              Route 2
+              {t.route2}
             </button>
           ) : (
             <button
