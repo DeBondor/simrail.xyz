@@ -2,29 +2,36 @@
 
 import { useRef, useEffect, useCallback } from "react";
 import { drawMap } from "@/lib/canvasRenderer";
-import type { DrawParams, Station } from "@/lib/canvasRenderer";
+import type { DrawParams, RouteBoardParams, Station } from "@/lib/canvasRenderer";
 import { colorSchemes } from "@/lib/colorSchemes";
-import type { RouteState } from "@/hooks/useRouteState";
+import type { RouteConfig, RouteState } from "@/hooks/useRouteState";
 
 interface CanvasPreviewProps {
   state: RouteState;
 }
 
-function collectParams(state: RouteState): DrawParams {
-  const { category, trainNumber, startStation, endStation, stations, segmentStyles } = state;
+function toRouteParams(route: RouteConfig): RouteBoardParams {
+  const {
+    category,
+    trainNumber,
+    startStation,
+    endStation,
+    stations,
+    segmentStyles,
+    segmentDots,
+  } = route;
+
   let colors;
   if (category === "CUSTOM") {
     colors = {
-      primary: state.customPrimary,
-      secondary: state.customSecondary,
+      primary: route.customPrimary,
+      secondary: route.customSecondary,
     };
   } else {
     colors = colorSchemes[category] || colorSchemes["TME"];
   }
-  const catLabel =
-    category === "CUSTOM"
-      ? state.customCatName.trim() || "CUSTOM"
-      : category;
+
+  const catLabel = category === "CUSTOM" ? route.customCatName.trim() || "CUSTOM" : category;
 
   const allStations: Station[] = [
     { name: startStation || "Start", type: "start", bold: false },
@@ -32,6 +39,7 @@ function collectParams(state: RouteState): DrawParams {
       name: s.name,
       type: "mid" as const,
       bold: s.bold,
+      shape: s.shape,
     })),
     { name: endStation || "End", type: "end", bold: false },
   ];
@@ -41,13 +49,23 @@ function collectParams(state: RouteState): DrawParams {
     num: trainNumber,
     allStations,
     segmentStyles: [...segmentStyles],
+    segmentDots: [...segmentDots],
     colors,
+  };
+}
+
+function collectParams(state: RouteState): DrawParams {
+  const primary = toRouteParams(state.routes[0]);
+  if (!state.secondRouteEnabled) return primary;
+  return {
+    ...primary,
+    secondRoute: toRouteParams(state.routes[1]),
   };
 }
 
 export function CanvasPreview({ state }: CanvasPreviewProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const frameRef = useRef<number | null>(null);
 
   const render = useCallback(() => {
     const canvas = canvasRef.current;
@@ -58,22 +76,38 @@ export function CanvasPreview({ state }: CanvasPreviewProps) {
     drawMap(ctx, canvas, params, state.advanced);
   }, [state]);
 
+  const renderRef = useRef(render);
+
   useEffect(() => {
-    clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(render, 80);
-    return () => clearTimeout(timerRef.current);
+    renderRef.current = render;
   }, [render]);
 
-  const fontsLoadedRef = useRef(false);
+  useEffect(() => {
+    if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
+    frameRef.current = requestAnimationFrame(() => {
+      frameRef.current = null;
+      render();
+    });
+    return () => {
+      if (frameRef.current !== null) {
+        cancelAnimationFrame(frameRef.current);
+        frameRef.current = null;
+      }
+    };
+  }, [render]);
 
   useEffect(() => {
-    if (fontsLoadedRef.current) return;
-    fontsLoadedRef.current = true;
+    let cancelled = false;
     Promise.all([
       document.fonts.ready,
       document.fonts.load('normal 48px "AileronCanvas"'),
       document.fonts.load('italic 48px "AileronCanvas"'),
-    ]).then(render);
+    ]).then(() => {
+      if (!cancelled) renderRef.current();
+    });
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return (

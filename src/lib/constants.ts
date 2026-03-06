@@ -3,8 +3,7 @@ import type { AdvancedSettings } from "./canvasRenderer";
 export const BASE_W = 1699;
 export const H = 720;
 export const TRACK_LEFT = 161;
-export const BASE_TRACK_RIGHT = 1540;
-export const RIGHT_MARGIN = BASE_W - BASE_TRACK_RIGHT;
+export const RIGHT_MARGIN = BASE_W - 1540;
 
 export const DEFAULT_ADVANCED: AdvancedSettings = {
   sqSize: 83,
@@ -18,5 +17,6 @@ export const DEFAULT_ADVANCED: AdvancedSettings = {
   fontSizeStart: 48,
   fontSizeMid: 40,
   fontSizeEnd: 48,
+  dualGap: 20,
 };
 

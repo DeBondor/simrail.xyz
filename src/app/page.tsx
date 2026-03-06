@@ -23,12 +23,14 @@ function ToolCard({
   title,
   desc,
   tag,
+  updateBadge,
   href,
 }: {
   icon: ReactNode;
   title: string;
   desc: string;
   tag: { label: string; variant: "available" | "soon" };
+  updateBadge?: string;
   href?: string;
 }) {
   const isAvailable = tag.variant === "available";
@@ -74,21 +76,31 @@ function ToolCard({
         </div>
       </div>
       <div className="flex items-center justify-between px-6 pb-6 relative">
-        {isAvailable ? (
-          <Badge
-            variant="outline"
-            className="bg-emerald-500/10 text-emerald-500 border-emerald-500/40 text-[0.62rem] font-bold tracking-widest uppercase"
-          >
-            {tag.label}
-          </Badge>
-        ) : (
-          <Badge
-            variant="outline"
-            className="text-[0.62rem] font-bold tracking-widest uppercase border-primary/40 text-primary/80"
-          >
-            {tag.label}
-          </Badge>
-        )}
+        <div className="flex items-center gap-2">
+          {isAvailable ? (
+            <Badge
+              variant="outline"
+              className="bg-emerald-500/10 text-emerald-500 border-emerald-500/40 text-[0.62rem] font-bold tracking-widest uppercase"
+            >
+              {tag.label}
+            </Badge>
+          ) : (
+            <Badge
+              variant="outline"
+              className="text-[0.62rem] font-bold tracking-widest uppercase border-primary/40 text-primary/80"
+            >
+              {tag.label}
+            </Badge>
+          )}
+          {updateBadge && (
+            <Badge
+              variant="outline"
+              className="bg-primary/10 text-primary border-primary/40 text-[0.6rem] font-bold tracking-widest uppercase"
+            >
+              {updateBadge}
+            </Badge>
+          )}
+        </div>
         {isAvailable && (
           <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:translate-x-1 group-hover:text-primary transition-all duration-300" />
         )}
@@ -194,6 +206,7 @@ export default function HomePage() {
             title={t.toolRouteTitle}
             desc={t.toolRouteDesc}
             tag={{ label: t.tagAvailable, variant: "available" }}
+            updateBadge={t.tagUpdated}
             href="/route"
           />
           <ToolCard
