@@ -130,6 +130,25 @@ export function AdvancedPanel({ state, dispatch }: AdvancedPanelProps) {
             </div>
           </div>
 
+          {state.secondRouteEnabled && (
+            <div className="space-y-2">
+              <Label className="text-[0.68rem] font-bold text-muted-foreground uppercase tracking-wider">
+                {t.advDualGap}
+                <span className="text-primary text-[0.85em] ml-1">
+                  {adv.dualGap}px
+                </span>
+              </Label>
+              <Slider
+                value={[adv.dualGap]}
+                onValueChange={([v]) => setAdv("dualGap", v)}
+                min={0}
+                max={600}
+                step={1}
+                className="py-1.5"
+              />
+            </div>
+          )}
+
           <div className="space-y-2">
             <Label className="text-[0.68rem] font-bold text-muted-foreground uppercase tracking-wider">
               {t.advFontSizeStart}{" "}

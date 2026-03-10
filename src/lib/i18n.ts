@@ -20,9 +20,7 @@ export interface Translations {
   removeTitle: string;
   segmentLabel: (i: number) => string;
   segStyleNames: [string, string, string];
-  btnClearStations: string;
   searchPlaceholder: string;
-  panelEndPos: string;
   labelEndX: string;
   panelAdv: string;
   advSqSize: string;
@@ -49,6 +47,7 @@ export interface Translations {
   toolLiveMapDesc: string;
   tagAvailable: string;
   tagSoon: string;
+  tagUpdated: string;
   toolTimetableTitle: string;
   toolTimetableDesc: string;
   footerDisclaimer: string;
@@ -57,8 +56,18 @@ export interface Translations {
   clearStationsTitle: string;
   themeDark: string;
   themeLight: string;
-  switchLangTitle: string;
   noStationsFound: string;
+  advDualGap: string;
+  labelRoutes: string;
+  route1: string;
+  route2: string;
+  addRoute: string;
+  copyRoute: string;
+  removeRoute2: string;
+  shapeToCircle: string;
+  shapeToHexagon: string;
+  dotAdd: string;
+  dotRemove: string;
 }
 
 export const LANG_LABELS: Record<Lang, string> = {
@@ -91,9 +100,7 @@ export const LANGS: Record<Lang, Translations> = {
     removeTitle: "Usuń",
     segmentLabel: (i) => `odcinek ${i + 1}`,
     segStyleNames: ["Ciągła", "Przerywana", "Mieszana"],
-    btnClearStations: "Wyczyść",
     searchPlaceholder: "Szukaj stacji…",
-    panelEndPos: "Koniec trasy",
     labelEndX: "Pozycja końcowa",
     panelAdv: "Zaawansowane",
     advSqSize: "Kwadrat (px)",
@@ -107,7 +114,6 @@ export const LANGS: Record<Lang, Translations> = {
     advFontSizeMid: "Tekst st. pośredniej",
     advFontSizeEnd: "Tekst st. końcowej",
     advReset: "Przywróć domyślne",
-
     heroBadge: "Narzędzia dla SimRail",
     heroTitle: "Witaj w",
     heroDesc:
@@ -123,6 +129,7 @@ export const LANGS: Record<Lang, Translations> = {
       "Śledź pozycje pociągów w czasie rzeczywistym na interaktywnej mapie serwerów SimRail.",
     tagAvailable: "Dostępne",
     tagSoon: "Wkrótce",
+    tagUpdated: "Zaktualizowano",
     toolTimetableTitle: "EDR Timetable",
     toolTimetableDesc:
       "Przeglądaj i analizuj rozkłady jazdy EDR w przejrzystym, interaktywnym widoku.",
@@ -133,8 +140,18 @@ export const LANGS: Record<Lang, Translations> = {
     clearStationsTitle: "Wyczyść stacje pośrednie",
     themeDark: "Tryb ciemny",
     themeLight: "Tryb jasny",
-    switchLangTitle: "Switch to English",
     noStationsFound: "Nie znaleziono stacji.",
+    advDualGap: "Odstęp między trasami",
+    labelRoutes: "Trasy",
+    route1: "Trasa 1",
+    route2: "Trasa 2",
+    addRoute: "Dodaj trasę",
+    copyRoute: "Skopiuj Trasę 1 do Trasy 2",
+    removeRoute2: "Usuń Trasę 2",
+    shapeToCircle: "Przełącz na koło",
+    shapeToHexagon: "Przełącz na sześciokąt",
+    dotAdd: "Dodaj punkt środkowy",
+    dotRemove: "Usuń punkt środkowy",
   },
   en: {
     panelRoute: "Route",
@@ -157,9 +174,7 @@ export const LANGS: Record<Lang, Translations> = {
     removeTitle: "Remove",
     segmentLabel: (i) => `segment ${i + 1}`,
     segStyleNames: ["Solid", "Dashed", "Mixed"],
-    btnClearStations: "Clear",
     searchPlaceholder: "Search stations…",
-    panelEndPos: "Track end",
     labelEndX: "End position",
     panelAdv: "Advanced",
     advSqSize: "Square (px)",
@@ -189,6 +204,7 @@ export const LANGS: Record<Lang, Translations> = {
       "Track train positions in real time on an interactive map of SimRail servers.",
     tagAvailable: "Available",
     tagSoon: "Coming soon",
+    tagUpdated: "Updated",
     toolTimetableTitle: "EDR Timetable",
     toolTimetableDesc:
       "Browse and analyze EDR timetables in a clear, interactive view.",
@@ -199,8 +215,18 @@ export const LANGS: Record<Lang, Translations> = {
     clearStationsTitle: "Clear intermediate stations",
     themeDark: "Dark mode",
     themeLight: "Light mode",
-    switchLangTitle: "Auf Deutsch wechseln",
     noStationsFound: "No stations found.",
+    advDualGap: "Route gap",
+    labelRoutes: "Routes",
+    route1: "Route 1",
+    route2: "Route 2",
+    addRoute: "Add Route",
+    copyRoute: "Copy Route 1 settings into Route 2",
+    removeRoute2: "Remove Route 2",
+    shapeToCircle: "Switch to circle",
+    shapeToHexagon: "Switch to hexagon",
+    dotAdd: "Add midpoint dot",
+    dotRemove: "Remove midpoint dot",
   },
   de: {
     panelRoute: "Strecke",
@@ -223,9 +249,7 @@ export const LANGS: Record<Lang, Translations> = {
     removeTitle: "Entfernen",
     segmentLabel: (i) => `Abschnitt ${i + 1}`,
     segStyleNames: ["Durchgehend", "Gestrichelt", "Gemischt"],
-    btnClearStations: "Löschen",
     searchPlaceholder: "Bahnhöfe suchen…",
-    panelEndPos: "Streckenende",
     labelEndX: "Endposition",
     panelAdv: "Erweitert",
     advSqSize: "Quadrat (px)",
@@ -255,6 +279,7 @@ export const LANGS: Record<Lang, Translations> = {
       "Verfolge Zugpositionen in Echtzeit auf einer interaktiven Karte der SimRail-Server.",
     tagAvailable: "Verfügbar",
     tagSoon: "Demnächst",
+    tagUpdated: "Aktualisiert",
     toolTimetableTitle: "EDR Fahrplan",
     toolTimetableDesc:
       "Durchsuche und analysiere EDR-Fahrpläne in einer übersichtlichen, interaktiven Ansicht.",
@@ -265,8 +290,18 @@ export const LANGS: Record<Lang, Translations> = {
     clearStationsTitle: "Zwischenbahnhöfe löschen",
     themeDark: "Dunkelmodus",
     themeLight: "Hellmodus",
-    switchLangTitle: "Přepnout na češtinu",
     noStationsFound: "Keine Bahnhöfe gefunden.",
+    advDualGap: "Streckenabstand",
+    labelRoutes: "Strecken",
+    route1: "Strecke 1",
+    route2: "Strecke 2",
+    addRoute: "Strecke hinzufügen",
+    copyRoute: "Strecke 1 in Strecke 2 kopieren",
+    removeRoute2: "Strecke 2 entfernen",
+    shapeToCircle: "Zu Kreis wechseln",
+    shapeToHexagon: "Zu Sechseck wechseln",
+    dotAdd: "Mittelpunkt hinzufügen",
+    dotRemove: "Mittelpunkt entfernen",
   },
   cz: {
     panelRoute: "Trasa",
@@ -289,9 +324,7 @@ export const LANGS: Record<Lang, Translations> = {
     removeTitle: "Odebrat",
     segmentLabel: (i) => `úsek ${i + 1}`,
     segStyleNames: ["Plná", "Přerušovaná", "Smíšená"],
-    btnClearStations: "Vymazat",
     searchPlaceholder: "Hledat stanice…",
-    panelEndPos: "Konec trasy",
     labelEndX: "Koncová pozice",
     panelAdv: "Pokročilé",
     advSqSize: "Čtverec (px)",
@@ -321,6 +354,7 @@ export const LANGS: Record<Lang, Translations> = {
       "Sledujte polohy vlaků v reálném čase na interaktivní mapě serverů SimRail.",
     tagAvailable: "Dostupné",
     tagSoon: "Již brzy",
+    tagUpdated: "Aktualizováno",
     toolTimetableTitle: "EDR Jízdní řád",
     toolTimetableDesc:
       "Procházejte a analyzujte jízdní řády EDR v přehledném interaktivním zobrazení.",
@@ -331,8 +365,18 @@ export const LANGS: Record<Lang, Translations> = {
     clearStationsTitle: "Vymazat mezilehlé stanice",
     themeDark: "Tmavý režim",
     themeLight: "Světlý režim",
-    switchLangTitle: "Passer au français",
     noStationsFound: "Žádné stanice nenalezeny.",
+    advDualGap: "Mezera mezi trasami",
+    labelRoutes: "Trasy",
+    route1: "Trasa 1",
+    route2: "Trasa 2",
+    addRoute: "Přidat trasu",
+    copyRoute: "Zkopírovat Trasu 1 do Trasy 2",
+    removeRoute2: "Odebrat Trasu 2",
+    shapeToCircle: "Přepnout na kruh",
+    shapeToHexagon: "Přepnout na šestiúhelník",
+    dotAdd: "Přidat středový bod",
+    dotRemove: "Odebrat středový bod",
   },
   fr: {
     panelRoute: "Itinéraire",
@@ -355,9 +399,7 @@ export const LANGS: Record<Lang, Translations> = {
     removeTitle: "Supprimer",
     segmentLabel: (i) => `tronçon ${i + 1}`,
     segStyleNames: ["Continue", "Pointillée", "Mixte"],
-    btnClearStations: "Effacer",
     searchPlaceholder: "Rechercher des gares…",
-    panelEndPos: "Fin de l'itinéraire",
     labelEndX: "Position finale",
     panelAdv: "Avancé",
     advSqSize: "Carré (px)",
@@ -387,6 +429,7 @@ export const LANGS: Record<Lang, Translations> = {
       "Suivez les positions des trains en temps réel sur une carte interactive des serveurs SimRail.",
     tagAvailable: "Disponible",
     tagSoon: "Bientôt",
+    tagUpdated: "Mis à jour",
     toolTimetableTitle: "Horaires EDR",
     toolTimetableDesc:
       "Parcourez et analysez les horaires EDR dans une vue interactive et claire.",
@@ -397,8 +440,18 @@ export const LANGS: Record<Lang, Translations> = {
     clearStationsTitle: "Effacer les gares intermédiaires",
     themeDark: "Mode sombre",
     themeLight: "Mode clair",
-    switchLangTitle: "Przełącz na polski",
     noStationsFound: "Aucune gare trouvée.",
+    advDualGap: "Écart entre itinéraires",
+    labelRoutes: "Itinéraires",
+    route1: "Itinéraire 1",
+    route2: "Itinéraire 2",
+    addRoute: "Ajouter un itinéraire",
+    copyRoute: "Copier l'itinéraire 1 dans l'itinéraire 2",
+    removeRoute2: "Supprimer l'itinéraire 2",
+    shapeToCircle: "Passer au cercle",
+    shapeToHexagon: "Passer à l'hexagone",
+    dotAdd: "Ajouter un point médian",
+    dotRemove: "Supprimer le point médian",
   },
 };
 

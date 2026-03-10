@@ -44,6 +44,8 @@ import {
   X,
   FileDown,
   Trash2,
+  Hexagon,
+  Circle,
 } from "lucide-react";
 import {
   DndContext,
@@ -65,13 +67,17 @@ import { CSS } from "@dnd-kit/utilities";
 import { fetchStations } from "@/lib/api";
 import { parseSimRailXML } from "@/lib/xmlImporter";
 import { categoryOptions } from "@/lib/colorSchemes";
-import type { RouteState, IntermediateStation, RouteDispatch } from "@/hooks/useRouteState";
+import type {
+  RouteConfig,
+  IntermediateStation,
+  RouteDispatch,
+} from "@/hooks/useRouteState";
 import type { SegmentStyle } from "@/lib/canvasRenderer";
 
 const stationsData = fetchStations();
 
 interface StationsPanelProps {
-  state: RouteState;
+  route: RouteConfig;
   dispatch: RouteDispatch;
 }
 
@@ -81,12 +87,16 @@ function SortableStationItem({
   dispatch,
   dragTitle,
   removeTitle,
+  shapeToCircle,
+  shapeToHexagon,
 }: {
   station: IntermediateStation;
   index: number;
   dispatch: RouteDispatch;
   dragTitle: string;
   removeTitle: string;
+  shapeToCircle: string;
+  shapeToHexagon: string;
 }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({ id: `station-${index}` });
@@ -139,6 +149,23 @@ function SortableStationItem({
       <Button
         variant="ghost"
         size="icon"
+        className={`h-6 w-6 shrink-0 ${
+          station.shape === "hexagon"
+            ? "bg-primary/15 border-primary text-primary border"
+            : "text-muted-foreground border border-border"
+        }`}
+        onClick={() => dispatch({ type: "TOGGLE_STATION_SHAPE", payload: index })}
+        title={station.shape === "hexagon" ? shapeToCircle : shapeToHexagon}
+      >
+        {station.shape === "hexagon" ? (
+          <Hexagon className="h-3 w-3" />
+        ) : (
+          <Circle className="h-3 w-3" />
+        )}
+      </Button>
+      <Button
+        variant="ghost"
+        size="icon"
         className="h-6 w-6 shrink-0 text-muted-foreground hover:text-primary hover:bg-primary/10"
         onClick={() => dispatch({ type: "REMOVE_STATION", payload: index })}
         title={removeTitle}
@@ -152,15 +179,21 @@ function SortableStationItem({
 function SegmentRow({
   index,
   style,
+  dot,
   dispatch,
   segStyleNames,
   segmentLabel,
+  dotAdd,
+  dotRemove,
 }: {
   index: number;
   style: SegmentStyle;
+  dot: boolean;
   dispatch: RouteDispatch;
   segStyleNames: [string, string, string];
   segmentLabel: (i: number) => string;
+  dotAdd: string;
+  dotRemove: string;
 }) {
   return (
     <div className="flex items-center gap-2 px-2.5 opacity-75 hover:opacity-100 transition-opacity">
@@ -186,12 +219,25 @@ function SegmentRow({
           <SelectItem value="mixed">{segStyleNames[2]}</SelectItem>
         </SelectContent>
       </Select>
+      <Button
+        variant="ghost"
+        size="icon"
+        className={`h-5 w-5 shrink-0 rounded-full ${
+          dot
+            ? "text-primary bg-primary/15 border border-primary"
+            : "text-muted-foreground/50 border border-dashed border-border/60 hover:border-muted-foreground/40 hover:text-muted-foreground"
+        }`}
+        title={dot ? dotRemove : dotAdd}
+        onClick={() => dispatch({ type: "SET_SEGMENT_DOT", payload: { index, dot: !dot } })}
+      >
+        <Circle className="h-2 w-2" fill={dot ? "currentColor" : "none"} />
+      </Button>
       <div className="flex-1 h-px bg-border" />
     </div>
   );
 }
 
-export function StationsPanel({ state, dispatch }: StationsPanelProps) {
+export function StationsPanel({ route, dispatch }: StationsPanelProps) {
   const { t } = useLang();
   const [customInput, setCustomInput] = useState("");
   const [comboOpen, setComboOpen] = useState(false);
@@ -209,10 +255,9 @@ export function StationsPanel({ state, dispatch }: StationsPanelProps) {
       if (!over || active.id === over.id) return;
       const oldIndex = parseInt(String(active.id).replace("station-", ""));
       const newIndex = parseInt(String(over.id).replace("station-", ""));
-      const reordered = arrayMove([...state.stations], oldIndex, newIndex);
-      dispatch({ type: "REORDER_STATIONS", payload: reordered });
+      dispatch({ type: "REORDER_STATIONS", payload: arrayMove([...route.stations], oldIndex, newIndex) });
     },
-    [state.stations, dispatch]
+    [route.stations, dispatch]
   );
 
   const addStation = useCallback(
@@ -222,7 +267,7 @@ export function StationsPanel({ state, dispatch }: StationsPanelProps) {
       setCustomInput("");
       setComboOpen(false);
     },
-    [dispatch]
+    []
   );
 
   const handleXMLImport = useCallback(
@@ -239,9 +284,7 @@ export function StationsPanel({ state, dispatch }: StationsPanelProps) {
         }
         try {
           const result = parseSimRailXML(String(text));
-          const catExists = categoryOptions.some(
-            (o) => o.value === result.trainName
-          );
+          const catExists = categoryOptions.some((o) => o.value === result.trainName);
           dispatch({
             type: "IMPORT",
             payload: {
@@ -261,7 +304,7 @@ export function StationsPanel({ state, dispatch }: StationsPanelProps) {
       };
       reader.readAsText(file, "UTF-8");
     },
-    [dispatch]
+    []
   );
 
   return (
@@ -275,7 +318,7 @@ export function StationsPanel({ state, dispatch }: StationsPanelProps) {
             variant="outline"
             className="border-primary text-primary bg-primary/10 text-[0.65rem] font-bold tracking-wider uppercase"
           >
-            {t.badgeIntermediate(state.stations.length)}
+            {t.badgeIntermediate(route.stations.length)}
           </Badge>
           <ChevronDown className="h-3.5 w-3.5 text-muted-foreground transition-transform group-data-[state=closed]:-rotate-90" />
         </CollapsibleTrigger>
@@ -321,7 +364,7 @@ export function StationsPanel({ state, dispatch }: StationsPanelProps) {
                 {t.labelStart}
               </Label>
               <Input
-                value={state.startStation}
+                value={route.startStation}
                 onChange={(e) =>
                   dispatch({ type: "SET_START", payload: e.target.value })
                 }
@@ -332,7 +375,7 @@ export function StationsPanel({ state, dispatch }: StationsPanelProps) {
                 {t.labelEnd}
               </Label>
               <Input
-                value={state.endStation}
+                value={route.endStation}
                 onChange={(e) =>
                   dispatch({ type: "SET_END", payload: e.target.value })
                 }
@@ -350,10 +393,13 @@ export function StationsPanel({ state, dispatch }: StationsPanelProps) {
             <div className="space-y-1.5 max-h-80 overflow-y-auto pr-1">
               <SegmentRow
                 index={0}
-                style={state.segmentStyles[0] || "solid"}
+                style={route.segmentStyles[0] || "solid"}
+                dot={route.segmentDots?.[0] ?? false}
                 dispatch={dispatch}
                 segStyleNames={t.segStyleNames}
                 segmentLabel={t.segmentLabel}
+                dotAdd={t.dotAdd}
+                dotRemove={t.dotRemove}
               />
 
               <DndContext
@@ -363,10 +409,10 @@ export function StationsPanel({ state, dispatch }: StationsPanelProps) {
                 onDragEnd={handleDragEnd}
               >
                 <SortableContext
-                  items={state.stations.map((_, i) => `station-${i}`)}
+                  items={route.stations.map((_, i) => `station-${i}`)}
                   strategy={verticalListSortingStrategy}
                 >
-                  {state.stations.map((station, i) => (
+                  {route.stations.map((station, i) => (
                     <div key={`item-${i}`} className="space-y-1.5">
                       <SortableStationItem
                         station={station}
@@ -374,13 +420,18 @@ export function StationsPanel({ state, dispatch }: StationsPanelProps) {
                         dispatch={dispatch}
                         dragTitle={t.dragTitle}
                         removeTitle={t.removeTitle}
+                        shapeToCircle={t.shapeToCircle}
+                        shapeToHexagon={t.shapeToHexagon}
                       />
                       <SegmentRow
                         index={i + 1}
-                        style={state.segmentStyles[i + 1] || "solid"}
+                        style={route.segmentStyles[i + 1] || "solid"}
+                        dot={route.segmentDots?.[i + 1] ?? false}
                         dispatch={dispatch}
                         segStyleNames={t.segStyleNames}
                         segmentLabel={t.segmentLabel}
+                        dotAdd={t.dotAdd}
+                        dotRemove={t.dotRemove}
                       />
                     </div>
                   ))}
@@ -432,7 +483,6 @@ export function StationsPanel({ state, dispatch }: StationsPanelProps) {
               />
               <Button
                 variant="outline"
-                size="sm"
                 className="gap-1.5 shrink-0"
                 onClick={() => addStation(customInput)}
               >
@@ -446,5 +496,3 @@ export function StationsPanel({ state, dispatch }: StationsPanelProps) {
     </Collapsible>
   );
 }
-
-

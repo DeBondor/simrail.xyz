@@ -17,14 +17,14 @@ import {
 } from "@/components/ui/collapsible";
 import { ChevronDown } from "lucide-react";
 import { categoryOptions } from "@/lib/colorSchemes";
-import type { RouteState, RouteDispatch } from "@/hooks/useRouteState";
+import type { RouteConfig, RouteDispatch } from "@/hooks/useRouteState";
 
 interface RoutePanelProps {
-  state: RouteState;
+  route: RouteConfig;
   dispatch: RouteDispatch;
 }
 
-export function RoutePanel({ state, dispatch }: RoutePanelProps) {
+export function RoutePanel({ route, dispatch }: RoutePanelProps) {
   const { t } = useLang();
 
   return (
@@ -43,7 +43,7 @@ export function RoutePanel({ state, dispatch }: RoutePanelProps) {
                 {t.labelCat}
               </Label>
               <Select
-                value={state.category}
+                value={route.category}
                 onValueChange={(v) => dispatch({ type: "SET_CATEGORY", payload: v })}
               >
                 <SelectTrigger className="w-full">
@@ -63,21 +63,21 @@ export function RoutePanel({ state, dispatch }: RoutePanelProps) {
                 {t.labelRouteNum}
               </Label>
               <Input
-                value={state.trainNumber}
+                value={route.trainNumber}
                 onChange={(e) =>
                   dispatch({ type: "SET_TRAIN_NUMBER", payload: e.target.value })
                 }
               />
             </div>
           </div>
-          {state.category === "CUSTOM" && (
+          {route.category === "CUSTOM" && (
             <div className="grid grid-cols-3 gap-3.5 p-3.5 bg-primary/10 border border-primary/30 rounded-md">
               <div className="space-y-1.5">
                 <Label className="text-[0.68rem] font-bold text-muted-foreground uppercase tracking-wider">
                   {t.labelCatName}
                 </Label>
                 <Input
-                  value={state.customCatName}
+                  value={route.customCatName}
                   maxLength={8}
                   onChange={(e) =>
                     dispatch({ type: "SET_CUSTOM_CAT_NAME", payload: e.target.value })
@@ -91,14 +91,14 @@ export function RoutePanel({ state, dispatch }: RoutePanelProps) {
                 <div className="flex gap-2 items-center">
                   <input
                     type="color"
-                    value={state.customPrimary}
+                    value={route.customPrimary}
                     onChange={(e) =>
                       dispatch({ type: "SET_CUSTOM_PRIMARY", payload: e.target.value })
                     }
                     className="w-9.5 h-9.5 p-0.5 border border-border rounded-sm bg-secondary cursor-pointer shrink-0"
                   />
                   <Input
-                    value={state.customPrimary}
+                    value={route.customPrimary}
                     maxLength={7}
                     onChange={(e) =>
                       dispatch({ type: "SET_CUSTOM_PRIMARY", payload: e.target.value })
@@ -114,14 +114,14 @@ export function RoutePanel({ state, dispatch }: RoutePanelProps) {
                 <div className="flex gap-2 items-center">
                   <input
                     type="color"
-                    value={state.customSecondary}
+                    value={route.customSecondary}
                     onChange={(e) =>
                       dispatch({ type: "SET_CUSTOM_SECONDARY", payload: e.target.value })
                     }
                     className="w-9.5 h-9.5 p-0.5 border border-border rounded-sm bg-secondary cursor-pointer shrink-0"
                   />
                   <Input
-                    value={state.customSecondary}
+                    value={route.customSecondary}
                     maxLength={7}
                     onChange={(e) =>
                       dispatch({ type: "SET_CUSTOM_SECONDARY", payload: e.target.value })
