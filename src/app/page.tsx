@@ -194,8 +194,8 @@ export default function HomePage() {
 
         {/* Browser-framed screenshot */}
         <div
-          className="animate-fade-in-up relative w-full max-w-[920px] mx-auto mt-4"
-          style={{ "--delay": "400ms", perspective: "1400px" } as React.CSSProperties}
+          className="animate-fade-in-up [perspective:1400px] relative w-full max-w-[920px] mx-auto mt-4"
+          style={{ "--delay": "400ms" }}
         >
           <div className="relative rounded-xl overflow-hidden border border-border/50 shadow-[0_40px_100px_rgba(0,0,0,0.8)] transition-transform duration-500 ease-out [transform:rotateX(6deg)] hover:[transform:rotateX(2deg)]">
             {/* Traffic-light bar */}
