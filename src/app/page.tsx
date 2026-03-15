@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   MapPin,
   Heart,
@@ -15,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLang } from "@/providers/LangProvider";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import React from "react";
 import type { ReactNode } from "react";
 
 
@@ -188,6 +190,30 @@ export default function HomePage() {
               {t.heroGithub}
             </a>
           </Button>
+        </div>
+
+        {/* Browser-framed screenshot */}
+        <div
+          className="animate-fade-in-up relative w-full max-w-[920px] mx-auto mt-4"
+          style={{ "--delay": "400ms", perspective: "1400px" } as React.CSSProperties}
+        >
+          <div className="relative rounded-xl overflow-hidden border border-border/50 shadow-[0_40px_100px_rgba(0,0,0,0.8)] transition-transform duration-500 ease-out [transform:rotateX(6deg)] hover:[transform:rotateX(2deg)]">
+            {/* Traffic-light bar */}
+            <div className="flex items-center gap-1.5 px-3.5 py-2.5 bg-card border-b border-border">
+              <span className="w-2.5 h-2.5 rounded-full bg-primary" />
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
+              <span className="w-2.5 h-2.5 rounded-full bg-app-green" />
+              <div className="flex-1 mx-2.5 h-5 rounded bg-background text-[10px] flex items-center justify-center text-muted-foreground/40 tracking-wide">
+                simrail.xyz/route
+              </div>
+            </div>
+            {/* Screenshot — replace placeholder with <Image> once route-screenshot.png exists */}
+            <div className="h-[380px] bg-card flex items-center justify-center text-muted-foreground/20 text-xs tracking-widest uppercase">
+              Screenshot coming soon
+            </div>
+          </div>
+          {/* Fade into tool cards */}
+          <div className="absolute bottom-0 left-0 right-0 h-36 bg-gradient-to-b from-transparent to-background pointer-events-none" />
         </div>
       </section>
 
