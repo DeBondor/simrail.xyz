@@ -41,19 +41,19 @@ function ToolCard({
     <div
       className={`glass-card h-full rounded-xl py-0 relative overflow-hidden ${
         isAvailable
-          ? "transition-all duration-300 hover:-translate-y-1 group"
-          : "cursor-default"
+          ? "transition-all duration-300 hover:-translate-y-[3px] hover:border-primary/30 group-hover:shadow-[0_16px_48px_rgba(0,0,0,0.45)]"
+          : "cursor-default opacity-45"
       }`}
     >
       {isAvailable && (
-        <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute top-0 left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-primary/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       )}
       <div className="pt-7 px-6 pb-0 relative">
         <div
           className={`w-11 h-11 bg-gradient-to-br border rounded-lg flex items-center justify-center text-primary ${
             isAvailable
-              ? "from-primary/25 to-primary/5 border-primary/30"
-              : "from-primary/15 to-primary/5 border-primary/20 opacity-70"
+              ? "from-primary/20 to-primary/5 border-primary/30"
+              : "from-primary/[8%] to-primary/[2%] border-primary/20"
           }`}
         >
           {icon}
@@ -111,7 +111,7 @@ function ToolCard({
   );
 
   return href ? (
-    <Link href={href} className="group">
+    <Link href={href} className="group block">
       {card}
     </Link>
   ) : (
@@ -219,7 +219,7 @@ export default function HomePage() {
 
       <div className="reveal flex items-center gap-4 px-10 mb-8">
         <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-        <span className="text-xs font-bold tracking-wider uppercase text-muted-foreground whitespace-nowrap">
+        <span className="text-[10px] font-bold tracking-[0.22em] uppercase text-muted-foreground/40 whitespace-nowrap">
           {t.dividerTools}
         </span>
         <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
