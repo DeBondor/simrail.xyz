@@ -41,7 +41,7 @@ function ToolCard({
     <div
       className={`glass-card h-full rounded-xl py-0 relative overflow-hidden ${
         isAvailable
-          ? "transition-all duration-300 hover:-translate-y-[3px] hover:border-primary/30 group-hover:shadow-[0_16px_48px_rgba(0,0,0,0.45)]"
+          ? "transition-all duration-300 hover:-translate-y-[3px] hover:border-primary/30 hover:shadow-[0_16px_48px_rgba(0,0,0,0.45)]"
           : "cursor-default opacity-45"
       }`}
     >
