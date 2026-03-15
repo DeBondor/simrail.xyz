@@ -255,6 +255,7 @@ export default function HomePage() {
         <div className="border-t border-border">
           <div className="max-w-5xl mx-auto px-10 py-8 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-3">
+              <Image src="/simrailxyz.svg" width={26} height={26} alt="" className="rounded-md" />
               <span className="text-sm font-bold tracking-widest uppercase">
                 <span className="text-primary">SimRail</span> XYZ
               </span>
