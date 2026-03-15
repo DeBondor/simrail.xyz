@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Sun, Moon, Globe, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -44,9 +45,7 @@ export function Navbar() {
   return (
     <nav className="flex items-center gap-3.5 px-10 py-4.5 border-b border-border bg-card sticky top-0 z-10">
       <Link href="/" className="flex items-center gap-3.5 no-underline">
-        <div className="w-8.5 h-8.5 bg-primary rounded-lg flex items-center justify-center text-base font-bold text-primary-foreground shrink-0">
-          SR
-        </div>
+        <Image src="/simrailxyz.svg" width={34} height={34} alt="SimRail XYZ" className="rounded-lg shrink-0" />
         <div className="text-[0.95rem] font-bold tracking-widest uppercase text-foreground">
           <span className="text-primary">SimRail</span> XYZ{" "}
           {subtitle && (
