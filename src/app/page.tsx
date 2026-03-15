@@ -16,7 +16,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLang } from "@/providers/LangProvider";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import React from "react";
 import type { ReactNode } from "react";
 
 
@@ -115,7 +114,7 @@ function ToolCard({
       {card}
     </Link>
   ) : (
-    <div>{card}</div>
+    <div className="group">{card}</div>
   );
 }
 
