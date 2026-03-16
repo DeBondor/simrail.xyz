@@ -22,7 +22,7 @@ export function ActionBar({ state }: ActionBarProps) {
   return (
     <div className="flex gap-2.5 w-full shrink-0">
       <Button
-        className="flex-1 py-3 text-[0.95rem] gap-2 font-bold bg-app-green hover:bg-app-green-hover text-white"
+        className="flex-1 py-3 text-[0.95rem] gap-2 font-bold bg-primary hover:bg-app-red-hover text-white"
         onClick={handleDownload}
       >
         <Download className="h-4 w-4" />

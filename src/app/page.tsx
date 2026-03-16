@@ -156,7 +156,7 @@ export default function HomePage() {
           style={{ "--delay": "100ms" }}
         >
           {t.heroTitle}{" "}
-          <span className="bg-gradient-to-r from-primary via-amber-500 to-primary bg-clip-text text-transparent bg-[length:200%_auto] inline-block animate-gradient-shift">
+          <span className="bg-gradient-to-r from-primary via-[#e06b62] to-primary bg-clip-text text-transparent bg-[length:200%_auto] inline-block animate-gradient-shift">
             SimRail XYZ
           </span>
         </h1>
@@ -191,29 +191,6 @@ export default function HomePage() {
           </Button>
         </div>
 
-        {/* Browser-framed screenshot */}
-        <div
-          className="animate-fade-in-up [perspective:1400px] relative w-full max-w-[920px] mx-auto mt-4"
-          style={{ "--delay": "400ms" }}
-        >
-          <div className="relative rounded-xl overflow-hidden border border-border/50 shadow-[0_40px_100px_rgba(0,0,0,0.8)] transition-transform duration-500 ease-out [transform:rotateX(6deg)] hover:[transform:rotateX(2deg)]">
-            {/* Traffic-light bar */}
-            <div className="flex items-center gap-1.5 px-3.5 py-2.5 bg-card border-b border-border">
-              <span className="w-2.5 h-2.5 rounded-full bg-primary" />
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-              <span className="w-2.5 h-2.5 rounded-full bg-app-green" />
-              <div className="flex-1 mx-2.5 h-5 rounded bg-background text-[10px] flex items-center justify-center text-muted-foreground/40 tracking-wide">
-                simrail.xyz/route
-              </div>
-            </div>
-            {/* Screenshot — replace placeholder with <Image> once route-screenshot.png exists */}
-            <div className="h-[380px] bg-card flex items-center justify-center text-muted-foreground/20 text-xs tracking-widest uppercase">
-              Screenshot coming soon
-            </div>
-          </div>
-          {/* Fade into tool cards */}
-          <div className="absolute bottom-0 left-0 right-0 h-36 bg-gradient-to-b from-transparent to-background pointer-events-none" />
-        </div>
       </section>
 
       <div className="reveal flex items-center gap-4 px-10 mb-8">
@@ -254,7 +231,7 @@ export default function HomePage() {
         <div className="border-t border-border">
           <div className="max-w-5xl mx-auto px-10 py-8 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-3">
-              <Image src="/simrailxyz.svg" width={26} height={26} alt="" className="rounded-md" />
+              <Image src="/favicon.svg" width={26} height={26} alt="" className="rounded-md" />
               <span className="text-sm font-bold tracking-widest uppercase">
                 <span className="text-primary">SimRail</span> XYZ
               </span>

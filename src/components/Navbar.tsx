@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -45,7 +46,7 @@ export function Navbar() {
   return (
     <nav className="flex items-center gap-3.5 px-10 py-4.5 border-b border-border bg-card sticky top-0 z-10">
       <Link href="/" className="flex items-center gap-3.5 no-underline">
-        <Image src="/simrailxyz.svg" width={34} height={34} alt="SimRail XYZ" className="rounded-lg shrink-0" />
+        <Image src="/favicon.svg" width={34} height={34} alt="SimRail XYZ" className="rounded-lg shrink-0" />
         <div className="text-[0.95rem] font-bold tracking-widest uppercase text-foreground">
           <span className="text-primary">SimRail</span> XYZ{" "}
           {subtitle && (
