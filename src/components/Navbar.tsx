@@ -40,7 +40,12 @@ export function Navbar() {
   const currentTheme = getCurrentTheme(theme, resolvedTheme);
   const isDark = hydrated && currentTheme === "dark";
 
-  const subtitle = pathname === "/route" ? t.heroRouteGen : null;
+  const subtitle =
+    pathname === "/route"
+      ? t.heroRouteGen
+      : pathname === "/map"
+        ? t.heroLiveMap
+        : null;
 
   return (
     <nav className="flex items-center gap-3.5 px-10 py-4.5 border-b border-border bg-card sticky top-0 z-10">

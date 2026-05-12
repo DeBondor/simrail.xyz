@@ -68,6 +68,42 @@ export interface Translations {
   shapeToHexagon: string;
   dotAdd: string;
   dotRemove: string;
+
+  heroLiveMap: string;
+  mapTitle: string;
+  mapServerLabel: string;
+  mapServerOffline: string;
+  mapSearchPlaceholder: string;
+  mapSearchHint: string;
+  mapNoResults: string;
+  mapCatServers: string;
+  mapCatTrains: string;
+  mapCatStations: string;
+  mapCatDispatchers: string;
+  mapPlayerDriven: string;
+  mapBotDriven: string;
+  mapTrainDetailSpeed: string;
+  mapTrainDetailNextSignal: string;
+  mapTrainDetailSignalSpeed: string;
+  mapTrainDetailDistance: string;
+  mapTrainDetailDriver: string;
+  mapTimetableHeader: string;
+  mapTimetableShowPassThroughs: string;
+  mapTimetableHidePassThroughs: string;
+  mapTimetableStopCommercial: string;
+  mapTimetableStopTechnical: string;
+  mapTimetableStopPassing: string;
+  mapTimetableKm: string;
+  mapTimetableMaxSpeed: string;
+  mapTimetablePlatform: string;
+  mapTimetableTrack: string;
+  mapTimetableLine: string;
+  mapTimetableNow: string;
+  mapStationDetailDifficulty: string;
+  mapStationDetailDispatchers: string;
+  mapStationNoDispatcher: string;
+  mapAttribution: string;
+  mapLoadError: string;
 }
 
 export const LANG_LABELS: Record<Lang, string> = {
@@ -152,6 +188,42 @@ export const LANGS: Record<Lang, Translations> = {
     shapeToHexagon: "Przełącz na sześciokąt",
     dotAdd: "Dodaj punkt środkowy",
     dotRemove: "Usuń punkt środkowy",
+
+    heroLiveMap: "Live Map",
+    mapTitle: "Live Map",
+    mapServerLabel: "Serwer",
+    mapServerOffline: "offline",
+    mapSearchPlaceholder: "Szukaj pociągu, stacji, dyspozytora…",
+    mapSearchHint: "Naciśnij ⌘K aby otworzyć",
+    mapNoResults: "Brak wyników",
+    mapCatServers: "Serwery",
+    mapCatTrains: "Pociągi",
+    mapCatStations: "Stacje",
+    mapCatDispatchers: "Dyspozytorzy",
+    mapPlayerDriven: "Gracz",
+    mapBotDriven: "Bot",
+    mapTrainDetailSpeed: "Prędkość",
+    mapTrainDetailNextSignal: "Następny semafor",
+    mapTrainDetailSignalSpeed: "Prędkość przed semaforem",
+    mapTrainDetailDistance: "Dystans do semafora",
+    mapTrainDetailDriver: "Maszynista (Steam ID)",
+    mapTimetableHeader: "Rozkład jazdy",
+    mapTimetableShowPassThroughs: "Pokaż przejazdy",
+    mapTimetableHidePassThroughs: "Ukryj przejazdy",
+    mapTimetableStopCommercial: "Postój handlowy",
+    mapTimetableStopTechnical: "Postój techniczny",
+    mapTimetableStopPassing: "Przejazd bez zatrzymania",
+    mapTimetableKm: "km",
+    mapTimetableMaxSpeed: "Vmax",
+    mapTimetablePlatform: "Peron",
+    mapTimetableTrack: "Tor",
+    mapTimetableLine: "Linia",
+    mapTimetableNow: "teraz",
+    mapStationDetailDifficulty: "Poziom trudności",
+    mapStationDetailDispatchers: "Dyspozytorzy",
+    mapStationNoDispatcher: "Brak dyspozytora",
+    mapAttribution: "Dane © OpenStreetMap, kafelki © CARTO. Dane SimRail nieoficjalne.",
+    mapLoadError: "Nie udało się pobrać danych",
   },
   en: {
     panelRoute: "Route",
@@ -227,6 +299,42 @@ export const LANGS: Record<Lang, Translations> = {
     shapeToHexagon: "Switch to hexagon",
     dotAdd: "Add midpoint dot",
     dotRemove: "Remove midpoint dot",
+
+    heroLiveMap: "Live Map",
+    mapTitle: "Live Map",
+    mapServerLabel: "Server",
+    mapServerOffline: "offline",
+    mapSearchPlaceholder: "Search trains, stations, dispatchers…",
+    mapSearchHint: "Press ⌘K to open",
+    mapNoResults: "No results",
+    mapCatServers: "Servers",
+    mapCatTrains: "Trains",
+    mapCatStations: "Stations",
+    mapCatDispatchers: "Dispatchers",
+    mapPlayerDriven: "Player",
+    mapBotDriven: "Bot",
+    mapTrainDetailSpeed: "Speed",
+    mapTrainDetailNextSignal: "Next signal",
+    mapTrainDetailSignalSpeed: "Signal speed",
+    mapTrainDetailDistance: "Distance to signal",
+    mapTrainDetailDriver: "Driver (Steam ID)",
+    mapTimetableHeader: "Timetable",
+    mapTimetableShowPassThroughs: "Show pass-throughs",
+    mapTimetableHidePassThroughs: "Hide pass-throughs",
+    mapTimetableStopCommercial: "Commercial stop",
+    mapTimetableStopTechnical: "Technical stop",
+    mapTimetableStopPassing: "Pass-through",
+    mapTimetableKm: "km",
+    mapTimetableMaxSpeed: "Vmax",
+    mapTimetablePlatform: "Platform",
+    mapTimetableTrack: "Track",
+    mapTimetableLine: "Line",
+    mapTimetableNow: "now",
+    mapStationDetailDifficulty: "Difficulty",
+    mapStationDetailDispatchers: "Dispatchers",
+    mapStationNoDispatcher: "No dispatcher",
+    mapAttribution: "Data © OpenStreetMap, tiles © CARTO. SimRail data unofficial.",
+    mapLoadError: "Failed to fetch data",
   },
   de: {
     panelRoute: "Strecke",
@@ -302,6 +410,42 @@ export const LANGS: Record<Lang, Translations> = {
     shapeToHexagon: "Zu Sechseck wechseln",
     dotAdd: "Mittelpunkt hinzufügen",
     dotRemove: "Mittelpunkt entfernen",
+
+    heroLiveMap: "Live Map",
+    mapTitle: "Live Map",
+    mapServerLabel: "Server",
+    mapServerOffline: "offline",
+    mapSearchPlaceholder: "Züge, Bahnhöfe, Fahrdienstleiter suchen…",
+    mapSearchHint: "Drücke ⌘K zum Öffnen",
+    mapNoResults: "Keine Ergebnisse",
+    mapCatServers: "Server",
+    mapCatTrains: "Züge",
+    mapCatStations: "Bahnhöfe",
+    mapCatDispatchers: "Fahrdienstleiter",
+    mapPlayerDriven: "Spieler",
+    mapBotDriven: "Bot",
+    mapTrainDetailSpeed: "Geschwindigkeit",
+    mapTrainDetailNextSignal: "Nächstes Signal",
+    mapTrainDetailSignalSpeed: "Signalgeschwindigkeit",
+    mapTrainDetailDistance: "Entfernung zum Signal",
+    mapTrainDetailDriver: "Lokführer (Steam ID)",
+    mapTimetableHeader: "Fahrplan",
+    mapTimetableShowPassThroughs: "Durchfahrten anzeigen",
+    mapTimetableHidePassThroughs: "Durchfahrten ausblenden",
+    mapTimetableStopCommercial: "Verkehrshalt",
+    mapTimetableStopTechnical: "Betriebshalt",
+    mapTimetableStopPassing: "Durchfahrt",
+    mapTimetableKm: "km",
+    mapTimetableMaxSpeed: "Vmax",
+    mapTimetablePlatform: "Bahnsteig",
+    mapTimetableTrack: "Gleis",
+    mapTimetableLine: "Strecke",
+    mapTimetableNow: "jetzt",
+    mapStationDetailDifficulty: "Schwierigkeit",
+    mapStationDetailDispatchers: "Fahrdienstleiter",
+    mapStationNoDispatcher: "Kein Fahrdienstleiter",
+    mapAttribution: "Daten © OpenStreetMap, Kacheln © CARTO. SimRail-Daten inoffiziell.",
+    mapLoadError: "Daten konnten nicht geladen werden",
   },
   cz: {
     panelRoute: "Trasa",
@@ -377,6 +521,42 @@ export const LANGS: Record<Lang, Translations> = {
     shapeToHexagon: "Přepnout na šestiúhelník",
     dotAdd: "Přidat středový bod",
     dotRemove: "Odebrat středový bod",
+
+    heroLiveMap: "Live Map",
+    mapTitle: "Live Map",
+    mapServerLabel: "Server",
+    mapServerOffline: "offline",
+    mapSearchPlaceholder: "Hledat vlaky, stanice, výpravčí…",
+    mapSearchHint: "Stiskni ⌘K pro otevření",
+    mapNoResults: "Žádné výsledky",
+    mapCatServers: "Servery",
+    mapCatTrains: "Vlaky",
+    mapCatStations: "Stanice",
+    mapCatDispatchers: "Výpravčí",
+    mapPlayerDriven: "Hráč",
+    mapBotDriven: "Bot",
+    mapTrainDetailSpeed: "Rychlost",
+    mapTrainDetailNextSignal: "Další návěstidlo",
+    mapTrainDetailSignalSpeed: "Rychlost u návěstidla",
+    mapTrainDetailDistance: "Vzdálenost k návěstidlu",
+    mapTrainDetailDriver: "Strojvedoucí (Steam ID)",
+    mapTimetableHeader: "Jízdní řád",
+    mapTimetableShowPassThroughs: "Zobrazit průjezdy",
+    mapTimetableHidePassThroughs: "Skrýt průjezdy",
+    mapTimetableStopCommercial: "Obchodní zastávka",
+    mapTimetableStopTechnical: "Technická zastávka",
+    mapTimetableStopPassing: "Průjezd",
+    mapTimetableKm: "km",
+    mapTimetableMaxSpeed: "Vmax",
+    mapTimetablePlatform: "Nástupiště",
+    mapTimetableTrack: "Kolej",
+    mapTimetableLine: "Trať",
+    mapTimetableNow: "nyní",
+    mapStationDetailDifficulty: "Obtížnost",
+    mapStationDetailDispatchers: "Výpravčí",
+    mapStationNoDispatcher: "Bez výpravčího",
+    mapAttribution: "Data © OpenStreetMap, dlaždice © CARTO. Data SimRail neoficiální.",
+    mapLoadError: "Načtení dat selhalo",
   },
   fr: {
     panelRoute: "Itinéraire",
@@ -452,6 +632,42 @@ export const LANGS: Record<Lang, Translations> = {
     shapeToHexagon: "Passer à l'hexagone",
     dotAdd: "Ajouter un point médian",
     dotRemove: "Supprimer le point médian",
+
+    heroLiveMap: "Live Map",
+    mapTitle: "Live Map",
+    mapServerLabel: "Serveur",
+    mapServerOffline: "hors ligne",
+    mapSearchPlaceholder: "Rechercher trains, gares, aiguilleurs…",
+    mapSearchHint: "Appuyer sur ⌘K pour ouvrir",
+    mapNoResults: "Aucun résultat",
+    mapCatServers: "Serveurs",
+    mapCatTrains: "Trains",
+    mapCatStations: "Gares",
+    mapCatDispatchers: "Aiguilleurs",
+    mapPlayerDriven: "Joueur",
+    mapBotDriven: "Bot",
+    mapTrainDetailSpeed: "Vitesse",
+    mapTrainDetailNextSignal: "Prochain signal",
+    mapTrainDetailSignalSpeed: "Vitesse au signal",
+    mapTrainDetailDistance: "Distance au signal",
+    mapTrainDetailDriver: "Conducteur (Steam ID)",
+    mapTimetableHeader: "Horaires",
+    mapTimetableShowPassThroughs: "Afficher les passages",
+    mapTimetableHidePassThroughs: "Masquer les passages",
+    mapTimetableStopCommercial: "Arrêt commercial",
+    mapTimetableStopTechnical: "Arrêt technique",
+    mapTimetableStopPassing: "Sans arrêt",
+    mapTimetableKm: "km",
+    mapTimetableMaxSpeed: "Vmax",
+    mapTimetablePlatform: "Quai",
+    mapTimetableTrack: "Voie",
+    mapTimetableLine: "Ligne",
+    mapTimetableNow: "maintenant",
+    mapStationDetailDifficulty: "Difficulté",
+    mapStationDetailDispatchers: "Aiguilleurs",
+    mapStationNoDispatcher: "Pas d'aiguilleur",
+    mapAttribution: "Données © OpenStreetMap, tuiles © CARTO. Données SimRail non officielles.",
+    mapLoadError: "Échec du chargement des données",
   },
 };
 

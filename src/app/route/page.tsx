@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import RouteClient from "./RouteClient";
 
 export const metadata: Metadata = {
-  title: "Route Generator — SimRail XYZ",
+  title: "Route Generator",
   description:
     "Generate aesthetic route boards for SimRail trains with category selection, intermediate stations and color palette.",
 };

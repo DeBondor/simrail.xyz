@@ -6,111 +6,104 @@ import {
   MapPin,
   Heart,
   Map,
-  ChevronRight,
   Layers,
   Github,
   Clock,
   Scale,
+  ArrowUpRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLang } from "@/providers/LangProvider";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 import type { ReactNode } from "react";
+import type { Translations } from "@/lib/i18n";
 
-
-function ToolCard({
-  icon,
-  title,
-  desc,
-  tag,
-  updateBadge,
-  href,
-}: {
+type Tool = {
   icon: ReactNode;
   title: string;
   desc: string;
-  tag: { label: string; variant: "available" | "soon" };
-  updateBadge?: string;
+  available: boolean;
   href?: string;
-}) {
-  const isAvailable = tag.variant === "available";
+};
 
+function getTools(t: Translations): Tool[] {
+  return [
+    {
+      icon: <MapPin className="h-5 w-5" />,
+      title: t.toolRouteTitle,
+      desc: t.toolRouteDesc,
+      available: true,
+      href: "/route",
+    },
+    {
+      icon: <Map className="h-5 w-5" />,
+      title: t.toolLiveMapTitle,
+      desc: t.toolLiveMapDesc,
+      available: true,
+      href: "/map",
+    },
+    {
+      icon: <Clock className="h-5 w-5" />,
+      title: t.toolTimetableTitle,
+      desc: t.toolTimetableDesc,
+      available: false,
+    },
+  ];
+}
+
+function ToolCard({ tool, t }: { tool: Tool; t: Translations }) {
   const card = (
     <div
-      className={`glass-card h-full rounded-xl py-0 relative overflow-hidden ${
-        isAvailable
-          ? "transition-all duration-300 hover:-translate-y-[3px] hover:border-primary/30 hover:shadow-[0_16px_48px_rgba(0,0,0,0.45)]"
-          : "cursor-default opacity-45"
+      className={`relative overflow-hidden rounded-2xl border border-border bg-card h-full transition-all duration-300 ${
+        tool.available
+          ? "hover:-translate-y-1 hover:shadow-2xl hover:border-primary/40"
+          : "opacity-50"
       }`}
     >
-      {isAvailable && (
-        <div className="absolute top-0 left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-primary/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      )}
-      <div className="pt-7 px-6 pb-0 relative">
+      <div
+        className={`h-32 ${
+          tool.available
+            ? "bg-linear-to-br from-primary/30 via-primary/10 to-transparent"
+            : "bg-muted"
+        }`}
+      />
+      <div className="p-7 -mt-10 relative">
         <div
-          className={`w-11 h-11 bg-gradient-to-br border rounded-lg flex items-center justify-center text-primary ${
-            isAvailable
-              ? "from-primary/20 to-primary/5 border-primary/30"
-              : "from-primary/[8%] to-primary/[2%] border-primary/20"
+          className={`size-14 rounded-xl border flex items-center justify-center bg-card ${
+            tool.available
+              ? "border-primary/40 text-primary"
+              : "border-border text-muted-foreground"
           }`}
         >
-          {icon}
+          {tool.icon}
         </div>
-      </div>
-      <div className="space-y-1.5 px-6 py-4 relative">
-        <div
-          className={`text-base font-bold tracking-tight ${
-            isAvailable ? "" : "text-muted-foreground"
-          }`}
-        >
-          {title}
+        <div className="mt-5 text-xl font-semibold tracking-tight">
+          {tool.title}
         </div>
-        <div
-          className={`text-sm leading-relaxed ${
-            isAvailable
-              ? "text-muted-foreground"
-              : "text-muted-foreground/70"
-          }`}
-        >
-          {desc}
-        </div>
-      </div>
-      <div className="flex items-center justify-between px-6 pb-6 relative">
-        <div className="flex items-center gap-2">
-          {isAvailable ? (
-            <Badge
-              variant="outline"
-              className="bg-emerald-500/10 text-emerald-500 border-emerald-500/40 text-[0.62rem] font-bold tracking-widest uppercase"
-            >
-              {tag.label}
-            </Badge>
-          ) : (
-            <Badge
-              variant="outline"
-              className="text-[0.62rem] font-bold tracking-widest uppercase border-primary/40 text-primary/80"
-            >
-              {tag.label}
-            </Badge>
-          )}
-          {updateBadge && (
-            <Badge
-              variant="outline"
-              className="bg-primary/10 text-primary border-primary/40 text-[0.6rem] font-bold tracking-widest uppercase"
-            >
-              {updateBadge}
-            </Badge>
+        <p className="mt-2 max-w-[56ch] text-sm text-pretty text-muted-foreground">
+          {tool.desc}
+        </p>
+        <div className="mt-6 flex items-center justify-between">
+          <Badge
+            variant="outline"
+            className={`text-[0.62rem] font-bold tracking-widest uppercase ${
+              tool.available
+                ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/40"
+                : "border-border text-muted-foreground"
+            }`}
+          >
+            {tool.available ? t.tagAvailable : t.tagSoon}
+          </Badge>
+          {tool.available && (
+            <ArrowUpRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
           )}
         </div>
-        {isAvailable && (
-          <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:translate-x-1 group-hover:text-primary transition-all duration-300" />
-        )}
       </div>
     </div>
   );
 
-  return href ? (
-    <Link href={href} className="group block">
+  return tool.href ? (
+    <Link href={tool.href} className="group block">
       {card}
     </Link>
   ) : (
@@ -118,127 +111,94 @@ function ToolCard({
   );
 }
 
-
 export default function HomePage() {
   const { t } = useLang();
-  useScrollReveal();
+  const tools = getTools(t);
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-57px)]">
-      <section className="relative flex flex-col items-center justify-center text-center px-6 py-24 md:py-32 gap-5 overflow-hidden">
+      <section className="relative isolate overflow-hidden">
         <div
-          className="animate-pulse-glow pointer-events-none absolute w-[500px] h-[500px] rounded-full bg-primary/20 blur-[120px]"
-          style={{ top: "30%", left: "30%", "--delay": "0ms" }}
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10 [background:radial-gradient(60%_55%_at_50%_-5%,oklch(from_var(--color-primary)_l_c_h/0.30),transparent_70%)]"
         />
         <div
-          className="animate-pulse-glow pointer-events-none absolute w-[400px] h-[400px] rounded-full bg-blue-500/15 blur-[120px]"
-          style={{ top: "20%", left: "65%", "--delay": "2600ms" }}
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10 [background:radial-gradient(35%_30%_at_85%_20%,oklch(from_var(--color-primary)_l_c_h/0.18),transparent_70%)]"
         />
-        <div
-          className="animate-float pointer-events-none absolute w-[300px] h-[300px] rounded-full bg-purple-500/10 blur-[100px]"
-          style={{ top: "60%", left: "50%", "--delay": "1200ms" }}
-        />
+        <div className="hero-grid pointer-events-none absolute inset-0 -z-10 opacity-60" />
 
-        <div className="hero-grid pointer-events-none absolute inset-0" />
-
-        <div className="animate-fade-in-up relative" style={{ "--delay": "0ms" }}>
+        <div className="max-w-6xl mx-auto px-6 md:px-10 pt-24 pb-16 md:pt-32 md:pb-24 text-center">
           <Badge
             variant="outline"
-            className="gap-1.5 border-primary/60 text-primary bg-primary/10 px-3.5 py-1 text-xs font-bold tracking-widest uppercase backdrop-blur-sm"
+            className="gap-1.5 border-primary/40 text-primary bg-primary/10 px-3.5 py-1 text-xs font-bold tracking-widest uppercase backdrop-blur-sm"
           >
             <Layers className="h-3 w-3" />
             {t.heroBadge}
           </Badge>
-        </div>
-
-        <h1
-          className="animate-fade-in-up relative text-4xl md:text-6xl font-bold tracking-tight leading-tight"
-          style={{ "--delay": "100ms" }}
-        >
-          {t.heroTitle}{" "}
-          <span className="bg-gradient-to-r from-primary via-[#e06b62] to-primary bg-clip-text text-transparent bg-[length:200%_auto] inline-block animate-gradient-shift">
-            SimRail XYZ
-          </span>
-        </h1>
-
-        <p
-          className="animate-fade-in-up relative text-muted-foreground max-w-xl text-base md:text-lg leading-relaxed"
-          style={{ "--delay": "200ms" }}
-        >
-          {t.heroDesc}
-        </p>
-
-        <div
-          className="animate-fade-in-up relative flex gap-3 flex-wrap justify-center mt-3"
-          style={{ "--delay": "300ms" }}
-        >
-          <Button asChild size="lg" className="gap-2">
-            <Link href="/route">
-              <MapPin className="h-4 w-4" />
-              {t.heroRouteGen}
-            </Link>
-          </Button>
-          <Button asChild variant="outline" size="lg" className="gap-2 backdrop-blur-sm">
-            <a
-              href="https://github.com/DeBondor/simrail.xyz"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${t.heroGithub} (opens in new tab)`}
+          <h1 className="mt-8 mx-auto max-w-[20ch] text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tight text-balance">
+            {t.heroTitle} <span className="text-primary">SimRail XYZ</span>
+          </h1>
+          <p className="mt-6 mx-auto max-w-[48ch] text-lg md:text-xl text-pretty text-muted-foreground">
+            {t.heroDesc}
+          </p>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <Button asChild size="lg" className="gap-2">
+              <Link href="/route">
+                <MapPin className="h-4 w-4" />
+                {t.heroRouteGen}
+              </Link>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="gap-2 backdrop-blur-sm"
             >
-              <Github className="h-4 w-4" />
-              {t.heroGithub}
-            </a>
-          </Button>
-        </div>
-
-      </section>
-
-      <div className="reveal flex items-center gap-4 px-10 mb-8">
-        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-        <span className="text-[10px] font-bold tracking-[0.22em] uppercase text-muted-foreground/40 whitespace-nowrap">
-          {t.dividerTools}
-        </span>
-        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-      </div>
-
-      <section className="reveal px-6 md:px-10 pb-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
-          <ToolCard
-            icon={<MapPin className="h-5 w-5" />}
-            title={t.toolRouteTitle}
-            desc={t.toolRouteDesc}
-            tag={{ label: t.tagAvailable, variant: "available" }}
-            updateBadge={t.tagUpdated}
-            href="/route"
-          />
-          <ToolCard
-            icon={<Map className="h-5 w-5" />}
-            title={t.toolLiveMapTitle}
-            desc={t.toolLiveMapDesc}
-            tag={{ label: t.tagSoon, variant: "soon" }}
-          />
-          <ToolCard
-            icon={<Clock className="h-5 w-5" />}
-            title={t.toolTimetableTitle}
-            desc={t.toolTimetableDesc}
-            tag={{ label: t.tagSoon, variant: "soon" }}
-          />
+              <a
+                href="https://github.com/DeBondor/simrail.xyz"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${t.heroGithub} (opens in new tab)`}
+              >
+                <Github className="h-4 w-4" />
+                {t.heroGithub}
+              </a>
+            </Button>
+          </div>
         </div>
       </section>
 
-      <footer className="reveal mt-auto relative">
+      <section className="px-6 md:px-10 pb-20">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {tools.map((tool, i) => (
+            <ToolCard key={i} tool={tool} t={t} />
+          ))}
+        </div>
+      </section>
+
+      <footer className="mt-auto relative">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
         <div className="border-t border-border">
           <div className="max-w-5xl mx-auto px-10 py-8 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-3">
-              <Image src="/favicon.svg" width={26} height={26} alt="" className="rounded-md" />
+              <Image
+                src="/favicon.svg"
+                width={26}
+                height={26}
+                alt=""
+                className="rounded-md"
+              />
               <span className="text-sm font-bold tracking-widest uppercase">
                 <span className="text-primary">SimRail</span> XYZ
               </span>
               <span className="hidden sm:block w-px h-4 bg-border" />
               <span className="text-xs text-muted-foreground tracking-wider">
                 Made with{" "}
-                <Heart className="inline h-3 w-3 text-primary align-[-1px]" fill="currentColor" />{" "}
+                <Heart
+                  className="inline h-3 w-3 text-primary align-[-1px]"
+                  fill="currentColor"
+                />{" "}
                 <strong className="text-accent-foreground">by DeBondor</strong>
               </span>
             </div>
